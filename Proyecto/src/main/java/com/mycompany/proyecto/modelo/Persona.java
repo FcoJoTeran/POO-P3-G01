@@ -9,6 +9,9 @@ package com.mycompany.proyecto.modelo;
  *
  * @author LENOVO
  */
-public class Persona {
-    
+public abstract class Persona {
+    protected String codigo;
+    protected String nombre;
+    protected String direccion;
+    protected String telefono;
 }
