@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.proyecto.modelo;
-
+import java.util.ArrayList;
 /**
  *
  * @author LENOVO
@@ -14,4 +14,6 @@ public abstract class Persona {
     protected String nombre;
     protected String direccion;
     protected String telefono;
+    
+    public abstract void menu(ArrayList<Cliente> clientes, ArrayList<Servicio> servicios, ArrayList<Proveedor> proveedores, Arraylist<Orden> ordenes);
 }
