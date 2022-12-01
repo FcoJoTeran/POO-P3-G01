@@ -15,5 +15,5 @@ public abstract class Persona {
     protected String direccion;
     protected String telefono;
     
-    public abstract void menu(ArrayList<Cliente> clientes, ArrayList<Servicio> servicios, ArrayList<Proveedor> proveedores, Arraylist<Orden> ordenes);
+    public abstract void menu();
 }

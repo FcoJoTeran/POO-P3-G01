@@ -17,5 +17,17 @@ public class Factura {
     public int agno;
     public int mes;
     public ArrayList<Orden> ordenes;
+    public double totalPagar;
+
+    public Factura(Cliente cliente, int agno, ArrayList<Orden> ordenes, double totalPagar) {
+        this.cliente = cliente;
+        this.agno = agno;
+        this.ordenes = ordenes;
+        this.totalPagar = totalPagar;
+    }
+    
+    public void generarFactura(){
+        
+    }
     
 }
