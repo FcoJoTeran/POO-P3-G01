@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.proyecto.documento;
+import com.mycompany.proyecto.enums.TipoVehiculo;
 import com.mycompany.proyecto.persona.*;
 import java.util.ArrayList;
 /**
@@ -14,6 +15,6 @@ public class Orden {
     public Cliente cliente;
     public String fecha;
     public String placaVehiculo;
-    public String tipoVehiculo;
+    public TipoVehiculo tipoVehiculo;
     public ArrayList<Servicio> servicios;
 }

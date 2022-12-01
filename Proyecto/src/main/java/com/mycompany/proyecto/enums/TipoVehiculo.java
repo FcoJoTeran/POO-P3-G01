@@ -9,6 +9,6 @@ package com.mycompany.proyecto.enums;
  *
  * @author LENOVO
  */
-public class TipoVehiculo {
-    
+public enum TipoVehiculo {
+    AUTOMOVIL, MOTOCICLETAS, BUS
 }

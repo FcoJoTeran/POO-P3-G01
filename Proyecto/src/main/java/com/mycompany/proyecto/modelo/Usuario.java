@@ -5,6 +5,8 @@
  */
 package com.mycompany.proyecto.modelo;
 
+import com.mycompany.proyecto.enums.TipoUsuario;
+
 /**
  *
  * @author LENOVO
@@ -13,5 +15,5 @@ public abstract class Usuario {
     protected String usuario;
     protected String contraseña;
     protected String nombre;
-    protected String nivel;
+    protected TipoUsuario TipoUsuario;
 }
