@@ -6,13 +6,13 @@
 package com.mycompany.proyecto;
 
 import java.util.ArrayList;
-import com.mycompany.proyecto.modelo.*;
 import com.mycompany.proyecto.persona.*;
+
 import com.mycompany.proyecto.modelo.Usuario;
 import com.mycompany.proyecto.usuario.*;
-import com.mycompany.proyecto.persona.*;
-import com.mycompany.proyecto.enums.TipoCliente;
 import com.mycompany.proyecto.enums.TipoUsuario;
+
+
 /**
  *
  * @author LENOVO
@@ -20,32 +20,36 @@ import com.mycompany.proyecto.enums.TipoUsuario;
 public class NewMain {
 
     /**
-     * @param args the command line arguments
      */
     
-    
+
    public static ArrayList<Usuario> usuarios = new ArrayList<>();
    public static ArrayList<Cliente> clientes = new ArrayList<>();
    public static ArrayList<Servicio> servicios = new ArrayList<>();
    public static ArrayList<Proveedor> proveedores = new ArrayList<>();
     
-    public void iniciar(){
+   
+    public void inicializarSistema(){
     
-    }
+    //Agregamos usuarios
+    usuarios.add(new Admin("admin1","12345678","Administrador",TipoUsuario.ADMIN));
+    usuarios.add(new Tecnico("alopez","al123456","Alvaro Lopez",TipoUsuario.TECNICO));
+    usuarios.add(new Cobranza("mcastro","mc123456","Maria Castro",TipoUsuario.COBRANZAS));
+    usuarios.add(new Tecnico("mbarcos","mb123456","Maria Barcos",TipoUsuario.TECNICO));
+    //Agregamos clientes
+    //clientes.add(new Cliente(String codigo, String nombre, String direccion, String telefono, TipoCliente tipoCliente));
+}
 
-    
     public static void main(String[] args) {
         // TODO code application logic here
         
         System.out.println("");
-        Admin a = new Admin("admin1","12345678","Administrador",TipoUsuario.ADMIN);
-        usuarios.add(a);
-        Admin c1 = (Admin)usuarios.get(0);
-        c1.menu();
+       
+       
+        //Admin c1 = (Admin)usuarios.get(0);
+        Admin.menu();
+                
         
-        
-        
-
     }
     
     

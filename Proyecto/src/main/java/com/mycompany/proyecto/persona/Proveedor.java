@@ -5,10 +5,18 @@
  */
 package com.mycompany.proyecto.persona;
 
+import com.mycompany.proyecto.modelo.Persona;
+
 /**
  *
  * @author LENOVO
  */
-public class Proveedor {
+public class Proveedor extends Persona{
+
+    public Proveedor(String codigo, String nombre, String direccion, String telefono) {
+        super(codigo, nombre, direccion, telefono);
+    }
+    
+    
     
 }

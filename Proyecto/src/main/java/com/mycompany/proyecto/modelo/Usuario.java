@@ -17,6 +17,7 @@ public abstract class Usuario {
     protected String contraseña;
     protected String nombre;
     protected TipoUsuario TipoUsuario;
+
 //public Usuario(String u){
     
 //}
@@ -27,9 +28,6 @@ public abstract class Usuario {
         this.nombre = nombre;
         this.TipoUsuario = TipoUsuario;
     }
-    
-
-
-
+   
 
 }

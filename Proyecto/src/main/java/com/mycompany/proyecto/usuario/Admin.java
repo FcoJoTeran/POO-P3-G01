@@ -12,10 +12,10 @@ import java.util.Scanner;
 import com.mycompany.proyecto.NewMain;
 
 
-/**
- *
- * @author LENOVO
- */
+import com.mycompany.proyecto.enums.TipoUsuario;
+import com.mycompany.proyecto.modelo.Usuario;
+
+
 public class Admin extends Usuario{
      
     
@@ -23,7 +23,7 @@ public class Admin extends Usuario{
         super(usuario, contraseña, nombre, TipoUsuario);
     }
     
-    public static void menu () {
+    public static void menu (){
      
         System.out.println("1 Administrar Clientes\n" + "2. Administrar Proveedores\n" + "3. Administrar servicios\n");
         int var;
@@ -92,19 +92,16 @@ public class Admin extends Usuario{
                 NewMain.clientes.add(cl);
                     
                     } 
-                
-       
      return a;
      
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
+    
+    
+    
+    
+    
+    
+    
+    
+    
