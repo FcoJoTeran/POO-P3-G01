@@ -16,4 +16,13 @@ public abstract class Usuario {
     protected String contraseña;
     protected String nombre;
     protected TipoUsuario TipoUsuario;
+
+    public Usuario(String usuario, String contraseña, String nombre, TipoUsuario TipoUsuario) {
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+        this.nombre = nombre;
+        this.TipoUsuario = TipoUsuario;
+    }
+    
+    public abstract void menu();
 }

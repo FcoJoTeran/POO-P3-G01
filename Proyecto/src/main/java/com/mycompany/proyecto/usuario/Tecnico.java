@@ -5,10 +5,17 @@
  */
 package com.mycompany.proyecto.usuario;
 
+import com.mycompany.proyecto.enums.TipoUsuario;
+import com.mycompany.proyecto.modelo.Usuario;
+
 /**
  *
  * @author LENOVO
  */
-public class Tecnico {
+public class Tecnico extends Usuario{
+
+    public Tecnico(String u, String c, String n, TipoUsuario t) {
+        super(u,c,n,t);
+    }
     
 }

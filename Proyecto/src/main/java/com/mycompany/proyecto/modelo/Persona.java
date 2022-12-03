@@ -14,6 +14,13 @@ public abstract class Persona {
     protected String nombre;
     protected String direccion;
     protected String telefono;
+
+    public Persona(String codigo, String nombre, String direccion, String telefono) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+    }
     
-    public abstract void menu();
+   
 }

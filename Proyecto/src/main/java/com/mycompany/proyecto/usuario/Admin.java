@@ -5,10 +5,24 @@
  */
 package com.mycompany.proyecto.usuario;
 
+import com.mycompany.proyecto.enums.TipoUsuario;
+import com.mycompany.proyecto.modelo.Usuario;
+
 /**
  *
  * @author LENOVO
  */
-public class Admin {
+public class Admin extends Usuario {
+
+    public Admin(String u, String c, String n, TipoUsuario t) {
+        super(u,c,n,t);
+    }
+    
+    public void menu(){
+        System.out.println("""
+                           1. Administrar Clientes
+                           2. Administrar Proveedores
+                           3. Admnistrar Servicios
+                           """);}
     
 }
