@@ -6,6 +6,7 @@
 package com.mycompany.proyecto.modelo;
 
 import com.mycompany.proyecto.enums.TipoUsuario;
+import java.util.Objects;
 
 /**
  *
@@ -14,7 +15,7 @@ import com.mycompany.proyecto.enums.TipoUsuario;
 public abstract class Usuario {
 
     protected String usuario;
-    protected String contraseña;
+    protected String contrasena;
     protected String nombre;
     protected TipoUsuario TipoUsuario;
 
@@ -22,12 +23,35 @@ public abstract class Usuario {
     
 //}
 
-    public Usuario(String usuario, String contraseña, String nombre, TipoUsuario TipoUsuario) {
+    public Usuario(String usuario, String contrasena, String nombre, TipoUsuario TipoUsuario) {
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
         this.nombre = nombre;
         this.TipoUsuario = TipoUsuario;
     }
    
+@Override
+   public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null &&  obj instanceof Usuario) {
+        //if (obj != null &&  getClass() == obj.getClass()) {
+            Usuario other = (Usuario) obj;
+            return (contrasena.equals(other.contrasena)&& usuario.equals(other.usuario));
+        }
+       
+        
+        return false;
+    }
 
-}
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.usuario);
+        hash = 53 * hash + Objects.hashCode(this.contrasena);
+        hash = 53 * hash + Objects.hashCode(this.nombre);
+        hash = 53 * hash + Objects.hashCode(this.TipoUsuario);
+        return hash;
+    }
+   }

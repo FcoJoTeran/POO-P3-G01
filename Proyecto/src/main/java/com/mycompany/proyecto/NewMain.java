@@ -5,6 +5,7 @@
  */
 package com.mycompany.proyecto;
 
+import com.mycompany.proyecto.enums.TipoCliente;
 import java.util.ArrayList;
 import com.mycompany.proyecto.persona.*;
 
@@ -29,6 +30,11 @@ public class NewMain {
    public static ArrayList<Proveedor> proveedores = new ArrayList<>();
     
    
+   public void inicioSesion(){
+       
+       
+   }
+   
     public void inicializarSistema(){
     
     //Agregamos usuarios
@@ -37,7 +43,10 @@ public class NewMain {
     usuarios.add(new Cobranza("mcastro","mc123456","Maria Castro",TipoUsuario.COBRANZAS));
     usuarios.add(new Tecnico("mbarcos","mb123456","Maria Barcos",TipoUsuario.TECNICO));
     //Agregamos clientes
-    //clientes.add(new Cliente(String codigo, String nombre, String direccion, String telefono, TipoCliente tipoCliente));
+    clientes.add(new Cliente("1", "cl1", "gye", "5931", TipoCliente.EMPRESARIAL));
+    clientes.add(new Cliente("2", "cl2", "uio", "5932", TipoCliente.PERSONAL));
+    clientes.add(new Cliente("3", "cl3", "cue", "5933", TipoCliente.EMPRESARIAL));
+    clientes.add(new Cliente("4", "cl4", "gye", "5934", TipoCliente.PERSONAL));
 }
 
     public static void main(String[] args) {
@@ -47,7 +56,7 @@ public class NewMain {
        
        
         //Admin c1 = (Admin)usuarios.get(0);
-        Admin.menu();
+        //Admin.menu();
                 
         
     }
