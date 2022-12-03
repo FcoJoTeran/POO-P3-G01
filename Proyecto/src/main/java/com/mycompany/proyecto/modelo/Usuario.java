@@ -19,9 +19,39 @@ public abstract class Usuario {
     protected String nombre;
     protected TipoUsuario TipoUsuario;
 
-//public Usuario(String u){
-    
-//}
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return TipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario TipoUsuario) {
+        this.TipoUsuario = TipoUsuario;
+    }
+
+
 
     public Usuario(String usuario, String contrasena, String nombre, TipoUsuario TipoUsuario) {
         this.usuario = usuario;
@@ -37,6 +67,8 @@ public abstract class Usuario {
         }
         if (obj != null &&  obj instanceof Usuario) {
         //if (obj != null &&  getClass() == obj.getClass()) {
+       
+        
             Usuario other = (Usuario) obj;
             return (contrasena.equals(other.contrasena)&& usuario.equals(other.usuario));
         }

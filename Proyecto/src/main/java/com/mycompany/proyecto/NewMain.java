@@ -12,6 +12,8 @@ import com.mycompany.proyecto.persona.*;
 import com.mycompany.proyecto.modelo.Usuario;
 import com.mycompany.proyecto.usuario.*;
 import com.mycompany.proyecto.enums.TipoUsuario;
+import static com.mycompany.proyecto.usuario.Admin.menu;
+import java.util.Scanner;
 
 
 /**
@@ -22,7 +24,7 @@ public class NewMain {
 
     /**
      */
-    
+   public static  Scanner sc = new Scanner(System.in);
 
    public static ArrayList<Usuario> usuarios = new ArrayList<>();
    public static ArrayList<Cliente> clientes = new ArrayList<>();
@@ -30,13 +32,18 @@ public class NewMain {
    public static ArrayList<Proveedor> proveedores = new ArrayList<>();
     
    
+
    public void inicioSesion(){
        
        
    }
    
-    public void inicializarSistema(){
     
+  
+
+    public static void inicializarSistema(){
+
+     
     //Agregamos usuarios
     usuarios.add(new Admin("admin1","12345678","Administrador",TipoUsuario.ADMIN));
     usuarios.add(new Tecnico("alopez","al123456","Alvaro Lopez",TipoUsuario.TECNICO));
@@ -47,19 +54,74 @@ public class NewMain {
     clientes.add(new Cliente("2", "cl2", "uio", "5932", TipoCliente.PERSONAL));
     clientes.add(new Cliente("3", "cl3", "cue", "5933", TipoCliente.EMPRESARIAL));
     clientes.add(new Cliente("4", "cl4", "gye", "5934", TipoCliente.PERSONAL));
+    
+    
+    
 }
-
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static Usuario consulta(Usuario u){
+        for(Usuario a: usuarios){
+     
+     
+      if(a.equals(u)){
+            return a;
+        }
+        
+    }return null;
+}
+    
+    public static void iniciarSesion(){
+         
+       
         
         System.out.println("");
-       
-       
-        //Admin c1 = (Admin)usuarios.get(0);
-        //Admin.menu();
-                
         
+        System.out.println("Inicio de sesión: ");
+        System.out.print("Ingrese su usuario: ");
+        String user = sc.nextLine();
+        System.out.print("Ingrese su contraseña: ");
+        String passw = sc.nextLine();
+        
+        Usuario inicioUser = new Admin(user,passw,"",TipoUsuario.ADMIN);
+        
+          if(consulta(inicioUser)!= null){
+            TipoUsuario tipo= consulta(inicioUser).getTipoUsuario();
+            switch(tipo){
+                case ADMIN:
+                menu();
+                break;
+                case TECNICO:
+                    System.out.println("tech");
+                    break;
+                case COBRANZAS:
+                    System.out.println("cobr");
+                    break;
+                default:
+                    
+            }
+        }else{
+            System.out.println("Usuario o contraseña incorrecta");
+            iniciarSesion();
+            
+        }
+         
     }
     
     
-}
+    public static void main(String[] args) {
+        // TODO code application logic here
+        
+        inicializarSistema();
+        iniciarSesion();
+      
+        
+        
+        //
+    
+       Admin c1 = (Admin)usuarios.get(0);
+        //Admin.menu();
+                
+        sc.close();
+    }
+     }
+    
+
