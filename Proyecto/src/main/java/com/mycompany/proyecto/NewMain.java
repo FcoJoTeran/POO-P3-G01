@@ -11,6 +11,7 @@ import com.mycompany.proyecto.persona.*;
 import com.mycompany.proyecto.modelo.Usuario;
 import com.mycompany.proyecto.usuario.*;
 import com.mycompany.proyecto.enums.TipoUsuario;
+import java.util.Scanner;
 
 
 /**
@@ -29,7 +30,7 @@ public class NewMain {
    public static ArrayList<Proveedor> proveedores = new ArrayList<>();
     
    
-    public void inicializarSistema(){
+    public static void inicializarSistema(){
     
     //Agregamos usuarios
     usuarios.add(new Admin("admin1","12345678","Administrador",TipoUsuario.ADMIN));
@@ -42,10 +43,21 @@ public class NewMain {
 
     public static void main(String[] args) {
         // TODO code application logic here
+        inicializarSistema();
+        Scanner sc = new Scanner(System.in);
         
-        System.out.println("");
+        
+        System.out.println("Inicio de sesión: ");
+        System.out.print("Ingrese su usuario: ");
+        String user = sc.nextLine();
+        System.out.print("Ingrese su contraseña: ");
+        String passw = sc.nextLine();
+        
+        Usuario inicioUser = new Admin(user,passw,"",TipoUsuario.ADMIN);
        
-       
+        if(usuarios.contains(inicioUser)){
+            
+        }
         //Admin c1 = (Admin)usuarios.get(0);
         Admin.menu();
                 
