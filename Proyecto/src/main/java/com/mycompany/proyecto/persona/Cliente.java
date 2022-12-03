@@ -4,11 +4,23 @@
  * and open the template in the editor.
  */
 package com.mycompany.proyecto.persona;
+import com.mycompany.proyecto.enums.TipoCliente;
+import com.mycompany.proyecto.enums.TipoUsuario;
+import com.mycompany.proyecto.modelo.Persona;
+
+
 
 /**
  *
  * @author LENOVO
  */
-public class Cliente {
+public class Cliente extends Persona{
+    TipoCliente tipoCliente_1;
+
+    public Cliente(String codigo, String nombre, String direccion, String telefono, TipoCliente tipoCliente) {
+        super(codigo,nombre,direccion,telefono);
+        tipoCliente_1 = tipoCliente;
+    }
+    
     
 }
