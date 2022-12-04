@@ -5,6 +5,7 @@
  */
 package com.mycompany.proyecto;
 
+import com.mycompany.proyecto.documento.Orden;
 import com.mycompany.proyecto.enums.TipoCliente;
 import java.util.ArrayList;
 import com.mycompany.proyecto.persona.*;
@@ -52,6 +53,13 @@ public class NewMain {
     servicios.add(new Servicio("CF1","Cambio de embragues",145));
     servicios.add(new Servicio("CF1","Cambio de filtro",120));
     servicios.add(new Servicio("CF1","Cambio de filtro",120));
+    //Agregamos proveedores 
+    proveedores.add(new Proveedor("prov1", "Justin", "Quito", "5935"));
+    proveedores.add(new Proveedor("prov2", "Francisco", "Machala", "5936"));
+    //Creamos dos ArrayList para las ordenes para cada tecnico
+    ArrayList<Orden> ord1 = new ArrayList<>();
+    //ord1.add(new Orden(clientes.get(0),));
+    ArrayList<Orden> ord2 = new ArrayList<>();
 }
     public static Usuario consulta(Usuario u){
         for(Usuario a: usuarios){
