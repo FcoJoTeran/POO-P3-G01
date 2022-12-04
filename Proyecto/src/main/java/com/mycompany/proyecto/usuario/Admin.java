@@ -173,13 +173,13 @@ public class Admin extends Usuario{
                     int a = sc1.nextInt();
                     if(a != 2){
                 
-                System.out.println("Nombre del cliente: "  );
+                System.out.println("Nombre del Proveedor: "  );
                 String nombre = sc1.next();
                 
                 String codigo = generar_C_proveedor();
-                System.out.println("Direccion del cliente: "  );
+                System.out.println("Direccion del Proveedor: "  );
                 String direccion = sc1.next();
-                System.out.println("Telefono del cliente: "  );
+                System.out.println("Telefono del Proveedor: "  );
                 String telefono = sc1.next();
                          
                  Proveedor pl = new Proveedor(codigo,nombre,direccion,telefono);

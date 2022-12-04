@@ -32,15 +32,6 @@ public class NewMain {
    public static ArrayList<Proveedor> proveedores = new ArrayList<>();
     
    
-
-   public void inicioSesion(){
-       
-       
-   }
-   
-    
-  
-
     public static void inicializarSistema(){
 
      
@@ -50,29 +41,28 @@ public class NewMain {
     usuarios.add(new Cobranza("mcastro","mc123456","Maria Castro",TipoUsuario.COBRANZAS));
     usuarios.add(new Tecnico("mbarcos","mb123456","Maria Barcos",TipoUsuario.TECNICO));
     //Agregamos clientes
-    clientes.add(new Cliente("1", "cl1", "gye", "5931", TipoCliente.EMPRESARIAL));
-    clientes.add(new Cliente("2", "cl2", "uio", "5932", TipoCliente.PERSONAL));
-    clientes.add(new Cliente("3", "cl3", "cue", "5933", TipoCliente.EMPRESARIAL));
-    clientes.add(new Cliente("4", "cl4", "gye", "5934", TipoCliente.PERSONAL));
-    
-    
-    
+    clientes.add(new Cliente("1", "Carlos", "gye", "5931", TipoCliente.EMPRESARIAL));
+    clientes.add(new Cliente("2", "Maria", "uio", "5932", TipoCliente.PERSONAL));
+    clientes.add(new Cliente("3", "Esteban", "cue", "5933", TipoCliente.EMPRESARIAL));
+    clientes.add(new Cliente("4", "Erick", "gye", "5934", TipoCliente.PERSONAL));
+    //Agregamos servicios
+    servicios.add(new Servicio("CF1","Cambio de filtro",120));
+    servicios.add(new Servicio("CPF","Cambio de pastillas de freno",230));
+    servicios.add(new Servicio("CAD","Cambio de amortiguadores",120));
+    servicios.add(new Servicio("CF1","Cambio de embragues",145));
+    servicios.add(new Servicio("CF1","Cambio de filtro",120));
+    servicios.add(new Servicio("CF1","Cambio de filtro",120));
 }
     public static Usuario consulta(Usuario u){
         for(Usuario a: usuarios){
-     
-     
       if(a.equals(u)){
             return a;
-        }
-        
+        } 
     }return null;
 }
     
     public static void iniciarSesion(){
          
-       
-        
         System.out.println("");
         
         System.out.println("Inicio de sesión: ");
