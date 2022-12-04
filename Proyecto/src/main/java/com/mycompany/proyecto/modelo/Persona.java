@@ -30,6 +30,10 @@ public abstract class Persona {
     public String getCodigo() {
         return codigo;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
     
     
     

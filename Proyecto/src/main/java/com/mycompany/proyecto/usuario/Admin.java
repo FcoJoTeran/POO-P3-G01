@@ -4,18 +4,12 @@
  * and open the template in the editor.
  */
 package com.mycompany.proyecto.usuario;
-import com.mycompany.proyecto.modelo.Usuario;
 import com.mycompany.proyecto.persona.*;
 import com.mycompany.proyecto.enums.TipoCliente;
-import com.mycompany.proyecto.enums.TipoUsuario;
 import java.util.Scanner;
 import com.mycompany.proyecto.NewMain;
-
-
 import com.mycompany.proyecto.enums.TipoUsuario;
 import com.mycompany.proyecto.modelo.Usuario;
-import java.util.ArrayList;
-import java.util.concurrent.CompletionStage;
 
 
 public class Admin extends Usuario{

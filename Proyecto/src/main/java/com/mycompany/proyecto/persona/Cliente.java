@@ -32,5 +32,10 @@ public class Cliente extends Persona{
     String msg = e.toString() + ", "+ tipoCliente_1;
     return msg;
     }
+
+    public TipoCliente getTipoCliente_1() {
+        return tipoCliente_1;
+    }
+    
 }
 

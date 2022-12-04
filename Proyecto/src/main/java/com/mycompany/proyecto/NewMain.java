@@ -13,7 +13,9 @@ import com.mycompany.proyecto.persona.*;
 import com.mycompany.proyecto.modelo.Usuario;
 import com.mycompany.proyecto.usuario.*;
 import com.mycompany.proyecto.enums.TipoUsuario;
+import com.mycompany.proyecto.enums.TipoVehiculo;
 import static com.mycompany.proyecto.usuario.Admin.menu;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 
@@ -31,16 +33,12 @@ public class NewMain {
    public static ArrayList<Cliente> clientes = new ArrayList<>();
    public static ArrayList<Servicio> servicios = new ArrayList<>();
    public static ArrayList<Proveedor> proveedores = new ArrayList<>();
-    
+   public static ArrayList<Orden> ordenes = new ArrayList<>(); 
    
     public static void inicializarSistema(){
 
      
-    //Agregamos usuarios
-    usuarios.add(new Admin("admin1","12345678","Administrador",TipoUsuario.ADMIN));
-    usuarios.add(new Tecnico("alopez","al123456","Alvaro Lopez",TipoUsuario.TECNICO));
-    usuarios.add(new Cobranza("mcastro","mc123456","Maria Castro",TipoUsuario.COBRANZAS));
-    usuarios.add(new Tecnico("mbarcos","mb123456","Maria Barcos",TipoUsuario.TECNICO));
+   
     //Agregamos clientes
     clientes.add(new Cliente("1", "Carlos", "gye", "5931", TipoCliente.EMPRESARIAL));
     clientes.add(new Cliente("2", "Maria", "uio", "5932", TipoCliente.PERSONAL));
@@ -56,11 +54,50 @@ public class NewMain {
     //Agregamos proveedores 
     proveedores.add(new Proveedor("prov1", "Justin", "Quito", "5935"));
     proveedores.add(new Proveedor("prov2", "Francisco", "Machala", "5936"));
+    //Creamos los ArrayList para los servicios que van en cada orden de cada tecnico con su respectiva cantidad
+     ArrayList<Servicio> serv1 = new ArrayList<>();
+     serv1.add(servicios.get(0));
+     serv1.add(servicios.get(1));
+     ArrayList<Integer> cant1 = new ArrayList<>();
+     cant1.add(3);
+     cant1.add(4);
+     ArrayList<Servicio> serv2 = new ArrayList<>();
+     serv2.add(servicios.get(2));
+     serv2.add(servicios.get(3));
+     ArrayList<Integer> cant2 = new ArrayList<>();
+     cant2.add(2);
+     cant2.add(1);
+     ArrayList<Servicio> serv3 = new ArrayList<>();
+     serv3.add(servicios.get(4));
+     serv3.add(servicios.get(5));
+     ArrayList<Integer> cant3 = new ArrayList<>();
+     cant3.add(1);
+     cant3.add(2);
+     ArrayList<Servicio> serv4 = new ArrayList<>();
+     serv4.add(servicios.get(0));
+     serv4.add(servicios.get(5));
+     ArrayList<Integer> cant4 = new ArrayList<>();
+     cant4.add(2);
+     cant4.add(3);
     //Creamos dos ArrayList para las ordenes para cada tecnico
     ArrayList<Orden> ord1 = new ArrayList<>();
-    //ord1.add(new Orden(clientes.get(0),));
+    ord1.add(new Orden(clientes.get(0),new GregorianCalendar(2020,10,2),"GSE-1082",TipoVehiculo.BUS,serv1));
+    ord1.add(new Orden(clientes.get(1),new GregorianCalendar(2020,10,4),"GFH-6743",TipoVehiculo.AUTOMOVIL,serv2));
     ArrayList<Orden> ord2 = new ArrayList<>();
+    ord2.add(new Orden(clientes.get(0),new GregorianCalendar(2020,10,5),"GHJ-6653",TipoVehiculo.MOTOCICLETAS,serv1));
+    ord2.add(new Orden(clientes.get(0),new GregorianCalendar(2020,10,6),"GKI-1432",TipoVehiculo.BUS,serv1));
+    //Unimos todas las listas de ordenes en una sola
+    ordenes.addAll(ord1);
+    ordenes.addAll(ord2);
+     //Agregamos usuarios
+    usuarios.add(new Admin("admin1","12345678","Administrador",TipoUsuario.ADMIN));
+    usuarios.add(new Tecnico("alopez","al123456","Alvaro Lopez",TipoUsuario.TECNICO,ord1));
+    usuarios.add(new Cobranza("mcastro","mc123456","Maria Castro",TipoUsuario.COBRANZAS));
+    usuarios.add(new Tecnico("mbarcos","mb123456","Maria Barcos",TipoUsuario.TECNICO,ord2));
 }
+    
+    
+    
     public static Usuario consulta(Usuario u){
         for(Usuario a: usuarios){
       if(a.equals(u)){
@@ -88,10 +125,10 @@ public class NewMain {
                 menu();
                 break;
                 case TECNICO:
-                    System.out.println("tech");
+                    menu();
                     break;
                 case COBRANZAS:
-                    System.out.println("cobr");
+                    menu();
                     break;
                 default:
                     
