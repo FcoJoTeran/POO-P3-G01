@@ -13,4 +13,10 @@ public class Servicio {
     private String codigo;
     private String nombre;
     private double precio;
+
+    public Servicio(String codigo, String nombre, double precio) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.precio = precio;
+    }
 }
