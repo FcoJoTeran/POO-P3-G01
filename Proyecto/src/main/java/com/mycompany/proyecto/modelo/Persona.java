@@ -21,6 +21,17 @@ public abstract class Persona {
         this.direccion = direccion;
         this.telefono = telefono;
     }
+    public  String toString() {
+        String msg;
+        msg = codigo + ", " + nombre +","+ direccion + ", " + telefono ;
+        return msg;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+    
+    
     
    
 }

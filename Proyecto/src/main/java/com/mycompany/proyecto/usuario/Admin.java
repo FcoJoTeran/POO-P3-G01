@@ -14,6 +14,8 @@ import com.mycompany.proyecto.NewMain;
 
 import com.mycompany.proyecto.enums.TipoUsuario;
 import com.mycompany.proyecto.modelo.Usuario;
+import java.util.ArrayList;
+import java.util.concurrent.CompletionStage;
 
 
 public class Admin extends Usuario{
@@ -41,13 +43,23 @@ public class Admin extends Usuario{
             case 1:
                 int a = 1;
                 
+                
                 while(a == 1){
+                    m_lista_Cliente();
                     a = Agregar_cliente();
                 }
               
                 break;
                 
             case 2:
+                int b = 1;
+                
+                
+                while(b == 1){
+                    m_lista_proveedores();
+                    b = Agregar_Provedor();
+                }
+                break;
                 
             case 3:
                 
@@ -68,10 +80,11 @@ public class Admin extends Usuario{
         System.out.println("1 Agregar Cliente\n" + "2. regresar\n" );
                     int a = sc1.nextInt();
                     if(a != 2){
+                
                 System.out.println("Nombre del cliente: "  );
                 String nombre = sc1.next();
-                System.out.println("Codigo del cliente: "  );
-                String codigo = sc1.next();
+                
+                String codigo = generar_C_cliente();
                 System.out.println("Direccion del cliente: "  );
                 String direccion = sc1.next();
                 System.out.println("Telefono del cliente: "  );
@@ -95,8 +108,89 @@ public class Admin extends Usuario{
      return a;
      
     }
-}
     
+    public static void m_lista_Cliente() {
+        for(int ind =0 ; ind < NewMain.clientes.size(); ind++ ){
+                Cliente cl_ind =  NewMain.clientes.get(ind);
+                String msg = cl_ind.toString(cl_ind);
+                    System.err.println(msg);
+                                        }
+        System.err.println("\n");
+        
+    }
+    
+    public static void m_lista_proveedores() {
+        if(NewMain.proveedores.size() != 0){
+        for(int ind =0 ; ind < NewMain.proveedores.size(); ind++ ){
+                Proveedor cl_ind =  NewMain.proveedores.get(ind);
+                String msg = cl_ind.toString();
+                    System.err.println(msg);
+                                        }
+        System.err.println("\n");
+        }
+        else{
+            System.err.println("Vacio");
+        }
+        
+    }
+    
+    public static String generar_C_cliente() {
+        
+        
+        Cliente u_cliente = NewMain.clientes.get(NewMain.clientes.size() - 1) ;
+        String codigo = u_cliente.getCodigo();
+        int u_c = Integer.valueOf(codigo)+1;
+        String u_c1= u_c + "";
+        
+        return u_c1;
+        
+    }
+    public static String generar_C_proveedor() {
+        
+        if( NewMain.proveedores.size() != 0){
+        
+        Proveedor u_cliente = NewMain.proveedores.get(NewMain.proveedores.size() - 1) ;
+        
+        String codigo = u_cliente.getCodigo();
+        
+        int u_c = Integer.valueOf(codigo)+1;
+        String u_c1= u_c + "";
+        return u_c1;
+        }
+        return "0";
+        
+        
+        
+    }
+    
+    
+    public static int Agregar_Provedor() {
+        
+        Scanner sc1= new Scanner(System.in);
+     
+        System.out.println("1 Agregar Proveedor\n" + "2. regresar\n" );
+                    int a = sc1.nextInt();
+                    if(a != 2){
+                
+                System.out.println("Nombre del cliente: "  );
+                String nombre = sc1.next();
+                
+                String codigo = generar_C_proveedor();
+                System.out.println("Direccion del cliente: "  );
+                String direccion = sc1.next();
+                System.out.println("Telefono del cliente: "  );
+                String telefono = sc1.next();
+                         
+                 Proveedor pl = new Proveedor(codigo,nombre,direccion,telefono);
+                
+                NewMain.proveedores.add(pl);
+                    
+                    } 
+     return a;
+     
+    }
+}
+ 
     
     
     

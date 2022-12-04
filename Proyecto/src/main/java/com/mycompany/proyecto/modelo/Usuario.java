@@ -86,4 +86,6 @@ public abstract class Usuario {
         hash = 53 * hash + Objects.hashCode(this.TipoUsuario);
         return hash;
     }
+    
+    
    }
