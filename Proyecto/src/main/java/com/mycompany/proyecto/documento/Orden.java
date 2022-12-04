@@ -20,12 +20,14 @@ public class Orden {
     private ArrayList<Servicio> servicios;
     private ArrayList<Integer> cantidad;
 
-    public Orden(Cliente cliente, GregorianCalendar fecha, String placaVehiculo, TipoVehiculo tipoVehiculo, ArrayList<Servicio> servicios) {
+    public Orden(Cliente cliente, GregorianCalendar fecha, String placaVehiculo, TipoVehiculo tipoVehiculo, ArrayList<Servicio> servicios,
+            ArrayList<Integer> cantidad) {
         this.cliente = cliente;
         this.fecha = fecha;
         this.placaVehiculo = placaVehiculo;
         this.tipoVehiculo = tipoVehiculo;
         this.servicios = servicios;
+        this.cantidad = cantidad;
     }
 
     public GregorianCalendar getFecha() {

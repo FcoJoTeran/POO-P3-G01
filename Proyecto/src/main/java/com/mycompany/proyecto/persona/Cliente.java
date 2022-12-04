@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.proyecto.persona;
+import com.mycompany.proyecto.NewMain;
 import com.mycompany.proyecto.enums.TipoCliente;
 import com.mycompany.proyecto.enums.TipoUsuario;
 import com.mycompany.proyecto.modelo.Persona;
@@ -36,6 +37,13 @@ public class Cliente extends Persona{
     public TipoCliente getTipoCliente_1() {
         return tipoCliente_1;
     }
-    
+ 
+    public static Cliente BuscarCliente(String cod){
+        for(Cliente c: NewMain.clientes){
+            if(cod.equals(c.getCodigo()))
+                return c;
+        }
+        return null;
+    }
 }
 

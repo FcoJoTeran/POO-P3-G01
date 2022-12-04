@@ -34,7 +34,7 @@ public class Cobranza extends Usuario{
                            1. Generar facturas a empresas
                            2. Reporte de ingresos por servicios
                            3. Reporte de atenciones por técnico
-                           4.Salir
+                           4. Salir
                            
                            Seleccione una opción:
                            """);
@@ -45,7 +45,7 @@ public class Cobranza extends Usuario{
                 String MES[] = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
                 System.out.print("Escriba el codigo del cliente Empresarial: ");
                 String cod = sc.nextLine();
-                Cliente c = BuscarCliente(cod);
+                Cliente c = Cliente.BuscarCliente(cod);
                 System.out.print("Inserte el año: ");
                 int agno = sc.nextInt();
                 System.out.print("Inserte el año: ");
@@ -93,17 +93,13 @@ public class Cobranza extends Usuario{
                 }
                 
                 break;
+            default:
+                    break;
                 
         }
     }while(opc != 4);
         } 
      
-    public static Cliente BuscarCliente(String cod){
-        for(Cliente c: NewMain.clientes){
-            if(c.equals(c.getCodigo()))
-                return c;
-        }
-        return null;
-    }
+    
     
 }

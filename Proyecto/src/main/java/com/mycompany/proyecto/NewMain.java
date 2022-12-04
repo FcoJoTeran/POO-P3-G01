@@ -81,11 +81,11 @@ public class NewMain {
      cant4.add(3);
     //Creamos dos ArrayList para las ordenes para cada tecnico
     ArrayList<Orden> ord1 = new ArrayList<>();
-    ord1.add(new Orden(clientes.get(0),new GregorianCalendar(2020,10,2),"GSE-1082",TipoVehiculo.BUS,serv1));
-    ord1.add(new Orden(clientes.get(1),new GregorianCalendar(2020,10,4),"GFH-6743",TipoVehiculo.AUTOMOVIL,serv2));
+    ord1.add(new Orden(clientes.get(0),new GregorianCalendar(2020,10,2),"GSE-1082",TipoVehiculo.BUS,serv1,cant1));
+    ord1.add(new Orden(clientes.get(1),new GregorianCalendar(2020,10,4),"GFH-6743",TipoVehiculo.AUTOMOVIL,serv2,cant2));
     ArrayList<Orden> ord2 = new ArrayList<>();
-    ord2.add(new Orden(clientes.get(0),new GregorianCalendar(2020,10,5),"GHJ-6653",TipoVehiculo.MOTOCICLETAS,serv1));
-    ord2.add(new Orden(clientes.get(0),new GregorianCalendar(2020,10,6),"GKI-1432",TipoVehiculo.BUS,serv1));
+    ord2.add(new Orden(clientes.get(0),new GregorianCalendar(2020,10,5),"GHJ-6653",TipoVehiculo.MOTOCICLETAS,serv1,cant3));
+    ord2.add(new Orden(clientes.get(0),new GregorianCalendar(2020,10,6),"GKI-1432",TipoVehiculo.BUS,serv1,cant4));
     //Unimos todas las listas de ordenes en una sola
     ordenes.addAll(ord1);
     ordenes.addAll(ord2);

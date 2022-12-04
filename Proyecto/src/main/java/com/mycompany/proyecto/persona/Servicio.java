@@ -50,4 +50,12 @@ public class Servicio {
                 }
     return total;
     }
+    
+    public static Servicio BuscarServicio(String servicio){
+        for(Servicio s: NewMain.servicios){
+            if(servicio.equals(s.getCodigo()))
+                return s;
+        }
+        return null;
+    }
 }
