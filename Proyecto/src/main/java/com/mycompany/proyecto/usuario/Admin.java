@@ -37,11 +37,12 @@ public class Admin extends Usuario{
             
             case 1:
                 int a = 1;
+                System.err.println("Lista de Cliente\n");
                 
                  m_lista_Cliente();
                  
                 while(a == 1){
-                    System.err.println("Lista de Cliente\n");
+                    
                    
                     a = Agregar_cliente();
                 }
@@ -51,27 +52,35 @@ public class Admin extends Usuario{
             case 2:
                 int b = 1;
                 
-                m_lista_proveedores();
+                
                 while(b == 1){
                     System.err.println("Lista de Proveedores\n");
-                   
+                    m_lista_proveedores();
                     b = Agregar_Provedor();
                 }
                 break;
                 
             case 3:
                 int c = 0;
-                System.err.println("Lista de Cliente\n");
+                System.err.println("Lista de Servicios\n");
                 
                 while (c !=3) {
                 m_lista_Servicio();
-                System.out.println("1 Agregar Servicio\n" + "2. Editar Servicio \n" + "3.Regresar\n");
+                //Scanner sc2 = new Scanner(System.in);
+                  
+                System.err.println("1.Agregar Servicios\n"+"2.Editar Servicio\n"+"3.Regresar");
+                Scanner sc2= new Scanner(System.in);
+                c = sc2.nextInt();
+                if(c==1){
+                 c = Agregar_servicio();
                 
-                c = Agregar_Servicio();
-                
-               
+                }
+                if(c==2){
+                    c = Editar_servicio();
                 }
                 
+                }
+                break;
             default:
                 throw new AssertionError();
         }
@@ -151,6 +160,17 @@ public class Admin extends Usuario{
         }
         
     }
+    public static String generar_C_cliente() {
+        
+        
+        Cliente u_cliente = NewMain.clientes.get(NewMain.clientes.size() - 1) ;
+        String codigo = u_cliente.getCodigo();
+        int u_c = Integer.valueOf(codigo)+1;
+        String u_c1= u_c + "";
+        
+        return u_c1;
+        
+    }
     
     public static String generar_C_servicio() {
         
@@ -187,10 +207,9 @@ public class Admin extends Usuario{
     public static int Agregar_Provedor() {
         
         Scanner sc1= new Scanner(System.in);
-     
-        
-                    int a = sc1.nextInt();
-                    if(a != 2){
+        System.out.println("1.Agraegar Proveedor\n" +"2.Regresar\n" );
+                    int w = sc1.nextInt();
+                    if(w != 2){
                 
                 System.out.println("Nombre del Proveedor: "  );
                 String nombre = sc1.next();
@@ -206,8 +225,59 @@ public class Admin extends Usuario{
                 NewMain.proveedores.add(pl);
                     
                     } 
+     return w;
+     
+    }
+    
+    public static int Agregar_servicio() {
+        
+        Scanner sc1= new Scanner(System.in);
+     
+        
+                    
+                    
+                
+                System.out.println("Nombre del Servicio: "  );
+                String nombre = sc1.next();
+                
+                String codigo = generar_C_servicio();
+                System.out.println("Precio "  );
+                Double precio = sc1.nextDouble();
+                         
+                 Servicio sr = new Servicio(codigo,nombre,precio);
+                
+                NewMain.servicios.add(sr);
+                    
+                    
+        System.err.println("1.Agregar Servicios\n"+"2.Editar Servicio\n"+"3.Regresar");
+        int a = sc1.nextInt();
      return a;
      
+    }
+    
+    
+    
+    public static int Editar_servicio() {
+        
+        
+        
+        Scanner sc1= new Scanner(System.in);
+        System.out.println("Ingrese codigo "  );
+         String codigo = sc1.next();
+         
+         
+         for(int i = 0; i<NewMain.servicios.size();i++){
+             if(codigo.equals(NewMain.servicios.get(i).getCodigo())){
+                 System.err.println("ingrse Nuevo precio");
+                 Double a = sc1.nextDouble();
+                 NewMain.servicios.get(i).setPrecio(a);
+         
+         }
+         }
+        
+        System.err.println("1.Agregar Servicios\n"+"2.Editar Servicio\n"+"3.Regresar");
+        int a = sc1.nextInt();
+     return a;   
     }
     
 }

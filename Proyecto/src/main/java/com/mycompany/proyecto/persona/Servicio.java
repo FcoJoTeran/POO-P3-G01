@@ -35,6 +35,11 @@ public class Servicio {
     public double getPrecio() {
         return precio;
     }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+    
     
     public static double TotalServicio(Servicio s,int mes2, int agno2){
         double total = 0;
@@ -61,7 +66,7 @@ public class Servicio {
 
     @Override
     public String toString() {
-        return "Servicio{" + "codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + '}';
+        return   "codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio ;
     }
     
     
