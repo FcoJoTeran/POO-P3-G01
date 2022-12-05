@@ -71,6 +71,7 @@ public class Admin extends Usuario{
                 System.err.println("1.Agregar Servicios\n"+"2.Editar Servicio\n"+"3.Regresar");
                 Scanner sc2= new Scanner(System.in);
                 c = sc2.nextInt();
+                
                 if(c==1){
                  c = Agregar_servicio();
                 
@@ -232,11 +233,7 @@ public class Admin extends Usuario{
     public static int Agregar_servicio() {
         
         Scanner sc1= new Scanner(System.in);
-     
-        
-                    
-                    
-                
+    
                 System.out.println("Nombre del Servicio: "  );
                 String nombre = sc1.next();
                 
