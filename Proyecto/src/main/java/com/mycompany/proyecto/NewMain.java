@@ -14,7 +14,7 @@ import com.mycompany.proyecto.modelo.Usuario;
 import com.mycompany.proyecto.usuario.*;
 import com.mycompany.proyecto.enums.TipoUsuario;
 import com.mycompany.proyecto.enums.TipoVehiculo;
-import static com.mycompany.proyecto.usuario.Admin.menu;
+import com.mycompany.proyecto.usuario.Admin;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
@@ -52,8 +52,8 @@ public class NewMain {
     servicios.add(new Servicio("CF1","Cambio de filtro",120));
     servicios.add(new Servicio("CF1","Cambio de filtro",120));
     //Agregamos proveedores 
-    proveedores.add(new Proveedor("prov1", "Justin", "Quito", "5935"));
-    proveedores.add(new Proveedor("prov2", "Francisco", "Machala", "5936"));
+    proveedores.add(new Proveedor("1", "Justin", "Quito", "5935"));
+    proveedores.add(new Proveedor("2", "Francisco", "Machala", "5936"));
     //Creamos los ArrayList para los servicios que van en cada orden de cada tecnico con su respectiva cantidad
      ArrayList<Servicio> serv1 = new ArrayList<>();
      serv1.add(servicios.get(0));
@@ -122,13 +122,16 @@ public class NewMain {
             TipoUsuario tipo= consulta(inicioUser).getTipoUsuario();
             switch(tipo){
                 case ADMIN:
-                menu();
+                Admin ad =(Admin)consulta(inicioUser);
+                ad.menu();
                 break;
                 case TECNICO:
-                    menu();
+                    //Tecnico tecnico;
+                    //tecnico.menu();
                     break;
                 case COBRANZAS:
-                    menu();
+                    Cobranza cd = (Cobranza)consulta(inicioUser);
+                    cd.menu();
                     break;
                 default:
                     

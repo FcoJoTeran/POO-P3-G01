@@ -19,7 +19,7 @@ public class Admin extends Usuario{
         super(usuario, contraseña, nombre, TipoUsuario);
     }
     
-    public static void menu (){
+    public void menu (){
      
         System.out.println("1 Administrar Clientes\n" + "2. Administrar Proveedores\n" + "3. Administrar servicios\n");
         int var;

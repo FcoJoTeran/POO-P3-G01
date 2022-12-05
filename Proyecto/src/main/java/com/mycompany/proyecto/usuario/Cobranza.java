@@ -26,7 +26,7 @@ public class Cobranza extends Usuario{
         super(u,c,n,t);
         
     }
-     public static void menu(){
+     public void menu(){
         int opc = 0;
         do{
       Scanner sc = new Scanner(System.in);
