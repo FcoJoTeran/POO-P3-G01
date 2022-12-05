@@ -10,6 +10,7 @@ import java.util.Scanner;
 import com.mycompany.proyecto.NewMain;
 import com.mycompany.proyecto.enums.TipoUsuario;
 import com.mycompany.proyecto.modelo.Usuario;
+import java.util.ArrayList;
 
 
 public class Admin extends Usuario{
@@ -37,9 +38,11 @@ public class Admin extends Usuario{
             case 1:
                 int a = 1;
                 
-                
+                 m_lista_Cliente();
+                 
                 while(a == 1){
-                    m_lista_Cliente();
+                    System.err.println("Lista de Cliente\n");
+                   
                     a = Agregar_cliente();
                 }
               
@@ -48,15 +51,26 @@ public class Admin extends Usuario{
             case 2:
                 int b = 1;
                 
-                
+                m_lista_proveedores();
                 while(b == 1){
-                    m_lista_proveedores();
+                    System.err.println("Lista de Proveedores\n");
+                   
                     b = Agregar_Provedor();
                 }
                 break;
                 
             case 3:
+                int c = 0;
+                System.err.println("Lista de Cliente\n");
                 
+                while (c !=3) {
+                m_lista_Servicio();
+                System.out.println("1 Agregar Servicio\n" + "2. Editar Servicio \n" + "3.Regresar\n");
+                
+                c = Agregar_Servicio();
+                
+               
+                }
                 
             default:
                 throw new AssertionError();
@@ -114,6 +128,15 @@ public class Admin extends Usuario{
         
     }
     
+    public static void m_lista_Servicio() {
+        for(int ind =0 ; ind < NewMain.servicios.size(); ind++ ){
+                Servicio sv_ind =  NewMain.servicios.get(ind);
+                String msg = sv_ind.toString();
+                    System.err.println(msg);
+                                        }
+        System.err.println("\n");
+        
+    }
     public static void m_lista_proveedores() {
         if(NewMain.proveedores.size() != 0){
         for(int ind =0 ; ind < NewMain.proveedores.size(); ind++ ){
@@ -129,10 +152,10 @@ public class Admin extends Usuario{
         
     }
     
-    public static String generar_C_cliente() {
+    public static String generar_C_servicio() {
         
         
-        Cliente u_cliente = NewMain.clientes.get(NewMain.clientes.size() - 1) ;
+        Servicio u_cliente = NewMain.servicios.get(NewMain.servicios.size() - 1) ;
         String codigo = u_cliente.getCodigo();
         int u_c = Integer.valueOf(codigo)+1;
         String u_c1= u_c + "";
@@ -159,11 +182,13 @@ public class Admin extends Usuario{
     }
     
     
+    
+    
     public static int Agregar_Provedor() {
         
         Scanner sc1= new Scanner(System.in);
      
-        System.out.println("1 Agregar Proveedor\n" + "2. regresar\n" );
+        
                     int a = sc1.nextInt();
                     if(a != 2){
                 
@@ -184,8 +209,10 @@ public class Admin extends Usuario{
      return a;
      
     }
+    
 }
- 
+
+
     
     
     

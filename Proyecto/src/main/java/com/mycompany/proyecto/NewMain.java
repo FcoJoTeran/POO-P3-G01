@@ -45,12 +45,12 @@ public class NewMain {
     clientes.add(new Cliente("3", "Esteban", "cue", "5933", TipoCliente.EMPRESARIAL));
     clientes.add(new Cliente("4", "Erick", "gye", "5934", TipoCliente.PERSONAL));
     //Agregamos servicios
-    servicios.add(new Servicio("CF1","Cambio de filtro",120));
-    servicios.add(new Servicio("CPF","Cambio de pastillas de freno",230));
-    servicios.add(new Servicio("CAD","Cambio de amortiguadores",120));
-    servicios.add(new Servicio("CF1","Cambio de embragues",145));
-    servicios.add(new Servicio("CF1","Cambio de filtro",120));
-    servicios.add(new Servicio("CF1","Cambio de filtro",120));
+    servicios.add(new Servicio("1","Cambio de filtro",120));
+    servicios.add(new Servicio("2","Cambio de pastillas de freno",230));
+    servicios.add(new Servicio("3","Cambio de amortiguadores",120));
+    servicios.add(new Servicio("4","Cambio de embragues",145));
+    servicios.add(new Servicio("5","Cambio de filtro",120));
+    servicios.add(new Servicio("6","Cambio de filtro",120));
     //Agregamos proveedores 
     proveedores.add(new Proveedor("1", "Justin", "Quito", "5935"));
     proveedores.add(new Proveedor("2", "Francisco", "Machala", "5936"));
@@ -121,22 +121,23 @@ public class NewMain {
           if(consulta(inicioUser)!= null){
             TipoUsuario tipo= consulta(inicioUser).getTipoUsuario();
             switch(tipo){
-                case ADMIN:
-                Admin ad =(Admin)consulta(inicioUser);
-                ad.menu();
-                break;
-                case TECNICO:
-                    //Tecnico tecnico;
-                    //tecnico.menu();
-                    break;
-                case COBRANZAS:
+                case ADMIN -> {
+                    Admin ad =(Admin)consulta(inicioUser);
+                    ad.menu();
+                }
+                case TECNICO -> {
+                }
+                case COBRANZAS -> {
                     Cobranza cd = (Cobranza)consulta(inicioUser);
                     cd.menu();
-                    break;
-                default:
+                }
+                default -> {
+                }
                     
             }
-        }else{
+            //Tecnico tecnico;
+            //tecnico.menu();
+                    }else{
             System.out.println("Usuario o contraseña incorrecta");
             iniciarSesion();
             

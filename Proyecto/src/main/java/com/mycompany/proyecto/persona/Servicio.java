@@ -58,4 +58,12 @@ public class Servicio {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "Servicio{" + "codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + '}';
+    }
+    
+    
+    
 }
