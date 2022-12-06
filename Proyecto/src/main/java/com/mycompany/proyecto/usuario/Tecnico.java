@@ -23,11 +23,13 @@ import java.util.Scanner;
  */
 public class Tecnico extends Usuario{
     private ArrayList<Orden> listaOrden;
+    private ArrayList<String> reportes = new ArrayList<>();
+    //Contructor del tecnico
     public Tecnico(String u, String c, String n, TipoUsuario t, ArrayList<Orden> listaOrden) {
         super(u,c,n,t);
         this.listaOrden = listaOrden;
     }
-    
+    //Este metodo da el total de ventas por tecnico
    public double totalPorTecnico(int mes3, int agno3){
     double total = 0;
     for(Orden o: listaOrden){
@@ -40,7 +42,7 @@ public class Tecnico extends Usuario{
     }
    }
     return total;
-}
+} //Se escribe el menu
    public void menu(){
       int opc = 0;
         do{
@@ -109,6 +111,14 @@ public class Tecnico extends Usuario{
                 
             break;
             
+            case 2:
+                System.out.println("Escriba su reporte: ");
+                String rep = sc.nextLine();
+                System.out.println("Desea enviar el reporte a: "+ NewMain.correo+" ? (Y/N)");
+                String resp = sc.nextLine();
+                if(resp.equals("Y"))
+                    reportes.add(rep);
+                break;
             default:
                 break;
                 

@@ -34,6 +34,7 @@ public class NewMain {
    public static ArrayList<Servicio> servicios = new ArrayList<>();
    public static ArrayList<Proveedor> proveedores = new ArrayList<>();
    public static ArrayList<Orden> ordenes = new ArrayList<>(); 
+   public static final String correo = "reportes@gmail.com";
    
     public static void inicializarSistema(){
 
