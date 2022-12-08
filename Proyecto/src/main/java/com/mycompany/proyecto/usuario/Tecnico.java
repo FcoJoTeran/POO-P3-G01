@@ -49,7 +49,7 @@ public class Tecnico extends Usuario{
             System.out.println("""
                            1. Generar orden de servicios
                            2. Reportar falta de insumos
-                           3.Salir
+                           3. Salir
                            
                            Seleccione una opción:
                            """);
@@ -62,7 +62,7 @@ public class Tecnico extends Usuario{
                 System.out.println("Ingrese codigo del cliente: ");
                 String codcl = sc.nextLine();
                 Cliente cl = Cliente.BuscarCliente(codcl);
-                System.out.println("Ingrese fecha del servicio (dd/MM/YY)");
+                System.out.println("Ingrese fecha del servicio (dd/MM/YYYY)");
                 String fecha = sc.nextLine();
                 String[] fechArray = fecha.split("/");
 
@@ -90,18 +90,24 @@ public class Tecnico extends Usuario{
                         tipo = TipoVehiculo.BUS;
                         break;
                 }
-                System.out.println("Ingrese placa del vehiculo: ");
-                String placa = sc.nextLine();
+                System.out.println("Ingrese placa del vehiculo: (XXX-####)");
+                String placa = sc.next();
                
                 double total = 0;
                 String servic = "";
                 int cantid1 = 0;
                 while(servic != "-1" && cantid1 != -1){
                     System.out.println("Ingrese un servicio: ");
-                    servic = sc.nextLine();
+                    servic = sc.next();
+                    if(servic.equals("-1")){
+                        break;
+                    }
                     Servicio servic1 = Servicio.BuscarServicio(servic);
                     System.out.println("Ingrese la cantidad: ");
                     cantid1= sc.nextInt();
+                    if(cantid1 ==-1){
+                        break;
+                    }
                     total += servic1.getPrecio() * cantid1;
                     s1.add(servic1);
                     ca1.add(cantid1);
@@ -113,11 +119,14 @@ public class Tecnico extends Usuario{
             
             case 2:
                 System.out.println("Escriba su reporte: ");
-                String rep = sc.nextLine();
+                String rep = sc.next();
                 System.out.println("Desea enviar el reporte a: "+ NewMain.correo+" ? (Y/N)");
-                String resp = sc.nextLine();
-                if(resp.equals("Y"))
+                sc.nextLine();
+                String resp = sc.next();
+                if(resp.equals("Y")){
                     reportes.add(rep);
+                    System.out.println("Reporte enviado\n");
+                }
                 break;
             default:
                 break;

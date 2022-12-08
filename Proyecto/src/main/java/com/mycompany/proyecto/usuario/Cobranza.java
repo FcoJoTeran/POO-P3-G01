@@ -44,51 +44,56 @@ public class Cobranza extends Usuario{
                 //El metodo usado por Calendar da el mes en ingles por lo que se hara una lista para obtener un indice con el mes y luego buscarlo en la lista
                 String MES[] = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
                 System.out.print("Escriba el codigo del cliente Empresarial: ");
-                String cod = sc.nextLine();
+                String cod = sc.next();
+                
                 Cliente c = Cliente.BuscarCliente(cod);
+                
                 System.out.print("Inserte el año: ");
                 int agno = sc.nextInt();
-                System.out.print("Inserte el año: ");
+                System.out.print("Inserte el mes: ");
                 int mes = sc.nextInt();
                 int total = 50;
-                System.out.println("Empresa: " + c.getNombre()+"\nPeriodo de facturación: "+ MES[mes+1]+" "+ agno);
+                System.out.println("Empresa: " + c.getNombre()+"\nPeriodo de facturación: "+ MES[mes-1]+" "+ agno);
                 System.out.println("Detalle de servicios:");
-                System.out.println("#Placa\tFecha\tTipo\tServicio\tCantidad\tTotal");
+                System.out.printf("%-10s %-30s %-20s %-30s %-10s %s","#Placa","Fecha","Tipo","Servicio","Cantidad","Total\n");
                 for(Orden o: NewMain.ordenes){
                     if(o.getCliente().getTipoCliente_1() == TipoCliente.EMPRESARIAL){
-                    if(o.getFecha().get(Calendar.MONTH) == mes && (o.getFecha().get(Calendar.YEAR) == agno )){
+                    if((o.getFecha().get(Calendar.MONTH)+1) == mes && (o.getFecha().get(Calendar.YEAR) == agno )){
                     for(int i =0; i<(o.getServicios().size());i++){
-                        System.out.println(o.getPlacaVehiculo()+"\t"+o.getFecha()+"\t"+o.getTipoVehiculo()+
-                                "\t"+o.getServicios().get(i).getNombre()+"\t"+o.getCantidad().get(i)+"\t"+(o.getServicios().get(i).getPrecio()*o.getCantidad().get(i)));
+                        System.out.printf("%-10s %-30s %-20s %-30s %-10s %-10s\n",o.getPlacaVehiculo(),o.getFecha().getTime().toLocaleString(),o.getTipoVehiculo(),
+                                o.getServicios().get(i).getNombre(),o.getCantidad().get(i),(o.getServicios().get(i).getPrecio()*o.getCantidad().get(i)));
                         total += o.getServicios().get(i).getPrecio()*o.getCantidad().get(i);
+                        
                     }
+                    
                 }
                     }
                 }
+                System.out.printf("%s %-50s\n","Total",total);
                 break;
                 
             case 2:
                 System.out.print("Inserte el año: ");
                 int agno2 = sc.nextInt();
-                System.out.print("Inserte el año: ");
+                System.out.print("Inserte el mes: ");
                 int mes2 = sc.nextInt();
-                System.out.printf("%s %-20s","Servicio","Total");
+                System.out.printf("%-50s %s\n","Servicio","Total");
                 for(Servicio s: NewMain.servicios){
-                    System.out.printf("%s %-20s",s.getNombre(),Servicio.TotalServicio(s, mes2, agno2));
+                    System.out.printf("%-50s %s\n",s.getNombre(),Servicio.TotalServicio(s, mes2, agno2));
                 }
                 break;
                 
             case 3:
                 System.out.print("Inserte el año: ");
                 int agno3 = sc.nextInt();
-                System.out.print("Inserte el año: ");
+                System.out.print("Inserte el mes: ");
                 int mes3 = sc.nextInt();
-                System.out.printf("%s %-20s","Técnico","Total");
+                System.out.printf("%-50s %s\n","Técnico","Total");
                 for(Usuario u: NewMain.usuarios){
                 if(u.getTipoUsuario()==(TECNICO)){
                     Tecnico tec = (Tecnico) u;
                     double totalTec =tec.totalPorTecnico(mes3, agno3);
-                    System.out.printf("%s %-20s",tec.getNombre(),totalTec);
+                    System.out.printf("%-50s %s\n",tec.getNombre(),totalTec);
                 }
                 }
                 

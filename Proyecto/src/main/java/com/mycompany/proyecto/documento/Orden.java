@@ -7,6 +7,8 @@ package com.mycompany.proyecto.documento;
 import com.mycompany.proyecto.enums.TipoVehiculo;
 import com.mycompany.proyecto.persona.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 /**
  *
@@ -54,5 +56,5 @@ public class Orden {
         return cantidad;
     }
 
-    
+   
 }

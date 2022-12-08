@@ -81,7 +81,7 @@ public class NewMain {
      cant4.add(2);
      cant4.add(3);
     //Creamos dos ArrayList para las ordenes para cada tecnico
-    ArrayList<Orden> ord1 = new ArrayList<>();
+    ArrayList<Orden> ord1 = new ArrayList<>(); //Las ordenes son de noviembre
     ord1.add(new Orden(clientes.get(0),new GregorianCalendar(2020,10,2),"GSE-1082",TipoVehiculo.BUS,serv1,cant1));
     ord1.add(new Orden(clientes.get(1),new GregorianCalendar(2020,10,4),"GFH-6743",TipoVehiculo.AUTOMOVIL,serv2,cant2));
     ArrayList<Orden> ord2 = new ArrayList<>();
@@ -127,6 +127,8 @@ public class NewMain {
                     ad.menu();
                 }
                 case TECNICO -> {
+                    Tecnico tec = (Tecnico)consulta(inicioUser);
+                    tec.menu();
                 }
                 case COBRANZAS -> {
                     Cobranza cd = (Cobranza)consulta(inicioUser);

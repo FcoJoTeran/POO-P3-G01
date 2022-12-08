@@ -8,7 +8,7 @@ import com.mycompany.proyecto.NewMain;
 import com.mycompany.proyecto.enums.TipoCliente;
 import com.mycompany.proyecto.enums.TipoUsuario;
 import com.mycompany.proyecto.modelo.Persona;
-
+import java.util.Objects;
 
 
 import com.mycompany.proyecto.enums.TipoCliente;
@@ -40,7 +40,8 @@ public class Cliente extends Persona{
  
     public static Cliente BuscarCliente(String cod){
         for(Cliente c: NewMain.clientes){
-            if(cod.equals(c.getCodigo()))
+            
+            if(Objects.equals(cod,c.getCodigo()))
                 return c;
         }
         return null;
