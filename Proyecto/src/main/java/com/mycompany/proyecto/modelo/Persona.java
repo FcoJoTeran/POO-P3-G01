@@ -21,6 +21,7 @@ public abstract class Persona {
         this.direccion = direccion;
         this.telefono = telefono;
     }
+    @Override
     public  String toString() {
         String msg;
         msg = codigo + ", " + nombre +","+ direccion + ", " + telefono ;

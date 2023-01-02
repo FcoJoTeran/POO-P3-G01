@@ -58,7 +58,7 @@ public class Tecnico extends Usuario{
        ArrayList<Servicio> s1 = new ArrayList<>();
        ArrayList<Integer> ca1 = new ArrayList<>();
         switch(opc){
-            case 1:
+            case 1 -> {
                 System.out.println("Ingrese codigo del cliente: ");
                 String codcl = sc.nextLine();
                 Cliente cl = Cliente.BuscarCliente(codcl);
@@ -72,23 +72,17 @@ public class Tecnico extends Usuario{
                 int anio = Integer.valueOf(fechArray[2]);
                 GregorianCalendar cal = new GregorianCalendar(anio, mes, dia);
                 System.out.println("""
-                                   Ingrese un numero para el tipo de vehiculo:
-                                   1.- Automovil
-                                   2.- Motocicletas
-                                   3.- Bus
-                                   """);
+                                                   Ingrese un numero para el tipo de vehiculo:
+                                                   1.- Automovil
+                                                   2.- Motocicletas
+                                                   3.- Bus
+                                                   """);
                 int numTipoVeh = sc.nextInt();
                 TipoVehiculo tipo = null;
                 switch(numTipoVeh){
-                    case 1:
-                        tipo = TipoVehiculo.AUTOMOVIL;
-                        break;
-                    case 2:
-                        tipo = TipoVehiculo.MOTOCICLETAS;
-                        break;
-                    case 3:
-                        tipo = TipoVehiculo.BUS;
-                        break;
+                    case 1 -> tipo = TipoVehiculo.AUTOMOVIL;
+                    case 2 -> tipo = TipoVehiculo.MOTOCICLETAS;
+                    case 3 -> tipo = TipoVehiculo.BUS;
                 }
                 System.out.println("Ingrese placa del vehiculo: (XXX-####)");
                 String placa = sc.next();
@@ -96,7 +90,7 @@ public class Tecnico extends Usuario{
                 double total = 0;
                 String servic = "";
                 int cantid1 = 0;
-                while(servic != "-1" && cantid1 != -1){
+                while(!"-1".equals(servic) && cantid1 != -1){
                     System.out.println("Ingrese un servicio: ");
                     servic = sc.next();
                     if(servic.equals("-1")){
@@ -112,12 +106,10 @@ public class Tecnico extends Usuario{
                     s1.add(servic1);
                     ca1.add(cantid1);
                 }
-               NewMain.ordenes.add(new Orden(cl,cal,placa,tipo,s1,ca1));
-                
-                
-            break;
+                NewMain.ordenes.add(new Orden(cl,cal,placa,tipo,s1,ca1));
+              }
             
-            case 2:
+            case 2 -> {
                 System.out.println("Escriba su reporte: ");
                 String rep = sc.next();
                 System.out.println("Desea enviar el reporte a: "+ NewMain.correo+" ? (Y/N)");
@@ -125,11 +117,17 @@ public class Tecnico extends Usuario{
                 String resp = sc.next();
                 if(resp.equals("Y")){
                     reportes.add(rep);
+
                     System.out.println("Reporte enviado\n");
                 }
                 break;
-            default:
+            
+
+              }
+            default -> {
                 break;
+              }
+
                 
    }
 }while(opc != 3);
