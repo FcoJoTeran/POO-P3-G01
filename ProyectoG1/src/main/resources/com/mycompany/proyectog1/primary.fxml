@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="imagenComp" alignment="CENTER" prefHeight="506.0" prefWidth="396.0" spacing="20.0" style="-fx-background-color: ghostwhite;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectog1.PrimaryController">
+   <children>
+      <ImageView fx:id="imageComp1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../files/logo.png" />
+         </image>
+      </ImageView>
+      <!--<ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="files/logo.png" />
+         </image>
+      </ImageView>-->
+      <Label text="Inicio de sesión" textFill="#0d76ff">
+         <font>
+            <Font name="Times New Roman" size="35.0" />
+         </font></Label>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" wrappingWidth="66.47525787353516" VBox.vgrow="NEVER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="cuadroUser" maxHeight="26.0" maxWidth="356.0" prefHeight="26.0" prefWidth="356.0" promptText="Ingrese su usuario" style="-fx-background-color: gainsboro;" VBox.vgrow="NEVER" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" wrappingWidth="94.30728912353516" VBox.vgrow="NEVER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="cuadroContra" maxHeight="26.0" maxWidth="356.0" prefHeight="26.0" prefWidth="356.0" promptText="Ingrese su contraseña" style="-fx-background-color: gainsboro;" VBox.vgrow="NEVER" />
+      <Button fx:id="primaryButton" onAction="#switchToSecondary" style="-fx-background-color: skyblue;" text="Switch to Secondary View" textFill="WHITE" />
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>
