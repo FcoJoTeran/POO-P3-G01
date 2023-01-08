@@ -6,13 +6,21 @@
 package modelo;
 
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
  *
  * @author LENOVO
  */
-public abstract class Usuario {
+public abstract class Usuario implements Serializable {
 
     protected String usuario;
     protected String contrasena;
@@ -87,6 +95,22 @@ public abstract class Usuario {
         return hash;
     }
     
-    
+   public static ArrayList<Usuario> cargarUsuarios(String ruta) {
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        System.out.println("xxxxxxxxxxxxx Cargando Usuarios xxxxxxxxxxxxxxxx");
+       //leer la lista de personas del archivo serializado
+        try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream(ruta))) {
+            usuarios = (ArrayList<Usuario>) oi.readObject();
+            System.out.println("=============");
+            // System.out.println(empleados);
+        } catch (FileNotFoundException ex) {
+            System.out.println("archivo no existe");
+        } catch (IOException   ex) {
+            System.out.println("error io:"+ex.getMessage());
+        } catch (ClassNotFoundException  ex) {
+            System.out.println("error class:"+ex.getMessage());
+        } 
+        return usuarios;
+    }
     
    }

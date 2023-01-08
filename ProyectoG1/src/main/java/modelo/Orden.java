@@ -6,13 +6,14 @@
 package modelo;
 //import com.mycompany.proyecto.enums.TipoVehiculo;
 //import com.mycompany.proyecto.persona.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 /**
  *
  * @author LENOVO
  */
-public class Orden {
+public class Orden implements Serializable{
     private Cliente cliente;
     private GregorianCalendar fecha;
     private String placaVehiculo;

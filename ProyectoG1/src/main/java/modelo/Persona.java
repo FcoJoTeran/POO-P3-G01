@@ -5,11 +5,13 @@
  */
 package modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author LENOVO
  */
-public abstract class Persona {
+public abstract class Persona implements Serializable{
     protected String codigo;
     protected String nombre;
     protected String direccion;

@@ -7,13 +7,14 @@ package modelo;
 
 //import com.mycompany.proyecto.NewMain;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  *
  * @author LENOVO
  */
-public class Servicio {
+public class Servicio implements Serializable{
     private String codigo;
     private String nombre;
     private double precio;
