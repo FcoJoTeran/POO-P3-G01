@@ -19,12 +19,12 @@ import modelo.*;
  */
 public class App extends Application {
 
-    public static String pathPersonas="src/main/resources/files/personas.csv";
-    public static String pathUsuarios="src/main/resources/files/usuarios.ser";
-    public static String pathClientes="src/main/resources/files/clientes.ser";
-    public static String pathProveedores="src/main/resources/files/proveedores.ser";
-    public static String pathServicios="src/main/resources/files/servicios.ser";
-    public static String pathOrdenes="src/main/resources/files/ordenes.ser";
+    public static String pathPersonas="files/personas.csv";
+    public static String pathUsuarios="files/usuarios.ser";
+    public static String pathClientes="files/clientes.ser";
+    public static String pathProveedores="files/proveedores.ser";
+    public static String pathServicios="files/servicios.ser";
+    public static String pathOrdenes="files/ordenes.ser";
     private static Scene scene;
 
     @Override

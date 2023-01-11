@@ -38,7 +38,7 @@
          </font>
       </Text>
       <TextField fx:id="cuadroContra" maxHeight="26.0" maxWidth="356.0" prefHeight="26.0" prefWidth="356.0" promptText="Ingrese su contraseña" style="-fx-background-color: gainsboro;" VBox.vgrow="NEVER" />
-      <Button fx:id="botonIniciarSesion" onAction="#switchToSecondary" style="-fx-background-color: skyblue;" text="Iniciar sesión" textFill="WHITE" />
+      <Button fx:id="botonIniciarSesion" onAction="#iniciarSesion" style="-fx-background-color: dodgerblue;" text="Iniciar sesión" textFill="WHITE" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
