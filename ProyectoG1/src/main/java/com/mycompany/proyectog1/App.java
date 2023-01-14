@@ -28,13 +28,22 @@ public class App extends Application {
     private static Scene scene;
 
     @Override
+    
     public void start(Stage stage) throws IOException {
         //crearArchivos(); METODO CREADO PARA CARGAR LAS LISTAS DEL ANTERIOR PROYECTO A ARCHIVOS SER
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("vista_login"), 640, 480);
+       
         
         stage.setScene(scene);
         stage.setTitle("Sistema de Información - Tecnicentro RP S.A.");
         stage.show();
+    }
+    public void stop(){
+        System.out.println("termino");
+        
+        
+        // para que al cerrar la aplicacion se guarde los archivos
+    
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -51,6 +60,7 @@ public class App extends Application {
     }
     //metodo para cambiar el contenido de la escena
     public static void changeRoot(Parent rootNode) {
+        
         scene.setRoot(rootNode);
     }
     

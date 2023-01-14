@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -37,7 +38,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="cuadroContra" maxHeight="26.0" maxWidth="356.0" prefHeight="26.0" prefWidth="356.0" promptText="Ingrese su contraseña" style="-fx-background-color: gainsboro;" VBox.vgrow="NEVER" />
+      <PasswordField fx:id="cuadroContra" maxHeight="26.0" maxWidth="356.0" prefHeight="26.0" prefWidth="356.0" promptText="Ingrese su contraseña" style="-fx-background-color: gainsboro;" />
       <Button fx:id="botonIniciarSesion" onAction="#iniciarSesion" style="-fx-background-color: dodgerblue;" text="Iniciar sesión" textFill="WHITE" />
    </children>
    <padding>

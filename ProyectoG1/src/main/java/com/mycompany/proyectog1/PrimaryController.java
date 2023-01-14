@@ -1,5 +1,6 @@
 package com.mycompany.proyectog1;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
@@ -7,8 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import modelo.*;
@@ -18,7 +21,7 @@ public class PrimaryController {
     @FXML
     private TextField cuadroUser;
     @FXML
-    private TextField cuadroContra;
+    private PasswordField cuadroContra;
     @FXML
     private VBox imagenComp;
     @FXML
@@ -27,7 +30,6 @@ public class PrimaryController {
     private Button botonIniciarSesion;
 
     
-    @FXML
     private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
     }
@@ -42,6 +44,7 @@ public class PrimaryController {
     }return null;
 }
     
+    @FXML
     public  void iniciarSesion(){
          
         
@@ -84,23 +87,26 @@ public class PrimaryController {
             alert.setContentText("Usuario o clave incorrecta");
             alert.showAndWait();
             
-        }}catch(Exception e){
-            System.out.println("Error en inicio de sesion:"+ e.getStackTrace());
+        }}
+        catch (FileNotFoundException e){
+        System.out.println("Error en inicio de sesion:"+ e.getMessage());
+        }
+        catch(Exception e){
+            System.out.println("Error en inicio de sesion:"+ e.getMessage());
         }
          
     }
-    @FXML
     public void mostrarVentanaAdmin() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("admin.fxml"));
         AdminController ct = new AdminController();
         
         fxmlLoader.setController(ct);
-        HBox root = (HBox) fxmlLoader.load(); //SE carga el hbox principal de la ventana
+        BorderPane root = (BorderPane) fxmlLoader.load(); //SE carga el hbox principal de la ventana
+        
         
         App.changeRoot(root);
     }
     
-     @FXML
     public void mostrarVentanaTecnico() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("tecnico.fxml"));
         TecnicoController ct = new TecnicoController();
@@ -111,7 +117,6 @@ public class PrimaryController {
         App.changeRoot(root);
     }
     
-     @FXML
     public void mostrarVentanaCobranza() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("cobranza.fxml"));
         CobranzaController ct = new CobranzaController();
