@@ -16,6 +16,8 @@ public abstract class Persona implements Serializable{
     protected String nombre;
     protected String direccion;
     protected String telefono;
+    
+   // private static final long serialVersionUID = 1234567L;
 
     public Persona(String codigo, String nombre, String direccion, String telefono) {
         this.codigo = codigo;

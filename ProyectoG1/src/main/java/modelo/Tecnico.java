@@ -41,8 +41,11 @@ public class Tecnico extends Usuario{
     }
    }
     return total;
-} 
- // EL MENU SE HARA EN FX ASI QUE NO HAY NECESIDAD DE PONERLO PEOR LO DEJO POR SI ACASO 
+}
+   public ArrayList<Orden> getListaOrden(){
+       return listaOrden;
+   }
+ // EL MENU SE HARA EN FX ASI QUE NO HAY NECESIDAD DE PONERLO PERo LO DEJO POR SI ACASO 
 
 //Se escribe el menu
   /* public void menu(){

@@ -65,7 +65,7 @@ public class PrimaryController {
                 }
                 case TECNICO : {
                     Tecnico tec = (Tecnico)consultaUser;
-                    mostrarVentanaTecnico();
+                    mostrarVentanaTecnico(tec);
                     break;
                 }
                 case COBRANZAS : {
@@ -107,13 +107,13 @@ public class PrimaryController {
         App.changeRoot(root);
     }
     
-    public void mostrarVentanaTecnico() throws IOException{
+    public void mostrarVentanaTecnico(Tecnico tec) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("tecnico.fxml"));
         TecnicoController ct = new TecnicoController();
         
         fxmlLoader.setController(ct);
         HBox root = (HBox) fxmlLoader.load(); //SE carga el hbox principal de la ventana
-        
+        ct.tec = tec;
         App.changeRoot(root);
     }
     

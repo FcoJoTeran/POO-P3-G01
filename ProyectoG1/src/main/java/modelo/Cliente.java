@@ -20,10 +20,12 @@ import java.util.Scanner;
 
 public class Cliente extends Persona{
     TipoCliente tipoCliente_1;
+    boolean mostrar;
 
     public Cliente(String codigo, String nombre, String direccion, String telefono, TipoCliente tipoCliente) {
         super(codigo,nombre,direccion,telefono);
         tipoCliente_1 = tipoCliente;
+        mostrar = true;
     }   
         
     public String toString(Cliente e){
@@ -44,5 +46,11 @@ public class Cliente extends Persona{
         }
         return null;
     }*/
+    @Override
+    public String toString(){
+        return nombre;
+    }
+    
+    
 }
 

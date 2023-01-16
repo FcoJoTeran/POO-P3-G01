@@ -30,7 +30,7 @@ public class App extends Application {
     @Override
     
     public void start(Stage stage) throws IOException {
-        //crearArchivos(); METODO CREADO PARA CARGAR LAS LISTAS DEL ANTERIOR PROYECTO A ARCHIVOS SER
+        crearArchivos(); //METODO CREADO PARA CARGAR LAS LISTAS DEL ANTERIOR PROYECTO A ARCHIVOS SER
         scene = new Scene(loadFXML("vista_login"), 640, 480);
        
         
@@ -64,7 +64,7 @@ public class App extends Application {
         scene.setRoot(rootNode);
     }
     
-   /* public void crearArchivos(){
+   public void crearArchivos(){
         ArrayList<Usuario> usuarios = new ArrayList<>();
         ArrayList<Cliente> clientes = new ArrayList<>();
         ArrayList<Servicio> servicios = new ArrayList<>();
@@ -172,8 +172,8 @@ public class App extends Application {
         System.out.println("ERROR EN CREACION LISTA SERVICIOS\n"
         +ex.getMessage());
     }
-    
-    }*/
+       System.out.println("Listas creadas");
+    }
 //aqui termina crear
    
     

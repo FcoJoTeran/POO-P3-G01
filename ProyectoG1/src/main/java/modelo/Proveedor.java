@@ -12,9 +12,11 @@ package modelo;
  * @author LENOVO
  */
 public class Proveedor extends Persona{
+    boolean mostrar;
 
     public Proveedor(String codigo, String nombre, String direccion, String telefono) {
         super(codigo, nombre, direccion, telefono);
+        mostrar = true;
     }
     
     
