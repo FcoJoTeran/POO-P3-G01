@@ -15,16 +15,20 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import modelo.Orden;
 import modelo.Tecnico;
+import modelo.TipoVehiculo;
 
 /**
  * FXML Controller class
@@ -125,6 +129,94 @@ public class TecnicoController implements Initializable {
 
     @FXML
     private void generarOrden(ActionEvent event) {
+        contenidoOpcion.getChildren().clear();
+        
+        Label codigo = new Label("Codigo: ");
+        codigo.setPrefSize(120, 30);
+        
+        TextField llenarcode = new TextField();
+        llenarcode.setPrefSize(100, 30);
+        llenarcode.setPromptText("Digite código del cliente");
+        
+        Label fecha = new Label("Fecha: ");
+        fecha.setPrefSize(120, 30);
+        
+        TextField llenarFecha = new TextField();
+        llenarFecha.setPrefSize(100, 30);
+        llenarFecha.setPromptText("Digite la fecha del servicio");
+        
+        Label placa = new Label("Placa del vehiculo:  ");
+        placa.setPrefSize(120, 30);
+        TextField llenarPlaca = new TextField();
+        llenarPlaca.setPrefSize(100, 30);
+        llenarPlaca.setPromptText("Digite la placa del vehiculo");
+        
+        
+        
+        
+        
+        Label tipo = new Label("Tipo de vehiculo");
+        HBox b = new HBox();
+        
+        tipo.setPrefSize(120, 30);
+        RadioButton automovil = new RadioButton();
+        Label aut = new Label("Automovil");
+        RadioButton motocicletas = new RadioButton();
+        Label mot = new Label("Motocicletas");
+        RadioButton bus = new RadioButton();
+        Label bus1 = new Label("Bus");
+        
+        ToggleGroup tg = new ToggleGroup();
+        automovil.setToggleGroup(tg);
+        motocicletas.setToggleGroup(tg);
+        bus.setToggleGroup(tg);
+        
+        b.getChildren().addAll(automovil,aut,motocicletas,mot,bus,bus1);
+        
+        
+        b.setMargin(automovil, new Insets(5,5,5,5));
+        b.setMargin(motocicletas, new Insets(5,5,5,5));
+        b.setMargin(bus, new Insets(5,5,5,5));
+        
+        contenidoOpcion.getChildren().addAll(codigo, llenarcode,fecha,llenarFecha, placa, llenarPlaca,tipo,b);
+        contenidoOpcion.setMargin(codigo, new Insets(0, 0, 5,0));
+        contenidoOpcion.setMargin(fecha, new Insets(5, 0, 5, 0));
+        contenidoOpcion.setMargin(placa, new Insets(5, 0, 5, 0));
+        
+        
+        if(automovil.isSelected()){
+            TipoVehiculo t = TipoVehiculo.AUTOMOVIL;
+        }
+        else if(motocicletas.isSelected()){
+            TipoVehiculo l = TipoVehiculo.MOTOCICLETAS;
+        }else if(bus.isSelected()){
+            TipoVehiculo t =  TipoVehiculo.BUS;
+        }
+       /* 
+        ObjectInputStream in=null;
+        //TableColumn<String> colum_1 = new TableColumn<>();
+        try {
+            
+            in = new ObjectInputStream(new FileInputStream(App.pathClientes));
+            ArrayList<Cliente> s = (ArrayList<Cliente>) in.readObject();
+            System.out.println(s );
+            System.out.println(s.size());
+            for(Cliente e: s){
+                System.out.println(e.getNombre());
+                System.out.println(e.getCodigo());
+         
+            }
+            //TableColumn cedula = new TableColumn<Cliente,String>(cedula);
+            in.close();
+        } catch (FileNotFoundException ex) {
+             System.err.println("No se encuentra archivo");
+        } catch (IOException ex) {
+           System.err.println("Error"+ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+           System.err.println("Error"+ex.getMessage());
+        }
+        */
+        
     }
 
     @FXML
