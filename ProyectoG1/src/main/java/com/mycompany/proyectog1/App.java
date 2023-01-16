@@ -30,7 +30,7 @@ public class App extends Application {
     @Override
     
     public void start(Stage stage) throws IOException {
-        //crearArchivos(); //METODO CREADO PARA CARGAR LAS LISTAS DEL ANTERIOR PROYECTO A ARCHIVOS SER
+        crearArchivos(); //METODO CREADO PARA CARGAR LAS LISTAS DEL ANTERIOR PROYECTO A ARCHIVOS SER
         scene = new Scene(loadFXML("vista_login"), 900, 550);
        
         
@@ -63,7 +63,7 @@ public class App extends Application {
         
         scene.setRoot(rootNode);
     }
-   /* 
+   
    public void crearArchivos(){
         ArrayList<Usuario> usuarios = new ArrayList<>();
         ArrayList<Cliente> clientes = new ArrayList<>();
@@ -77,10 +77,10 @@ public class App extends Application {
      
    
     //Agregamos clientes
-    clientes.add(new Cliente("1", "Carlos", "gye", "5931", TipoCliente.EMPRESARIAL));
-    clientes.add(new Cliente("2", "Maria", "uio", "5932", TipoCliente.PERSONAL));
-    clientes.add(new Cliente("3", "Esteban", "cue", "5933", TipoCliente.EMPRESARIAL));
-    clientes.add(new Cliente("4", "Erick", "gye", "5934", TipoCliente.PERSONAL));
+    clientes.add(new Cliente("545","1", "Carlos", "gye", "5931", TipoCliente.EMPRESARIAL));
+    clientes.add(new Cliente("5656","2", "Maria", "uio", "5932", TipoCliente.PERSONAL));
+    clientes.add(new Cliente("123465","3", "Esteban", "cue", "5933", TipoCliente.EMPRESARIAL));
+    clientes.add(new Cliente("12344","4", "Erick", "gye", "5934", TipoCliente.PERSONAL));
     //Agregamos servicios
     servicios.add(new Servicio("1","Cambio de filtro",120));
     servicios.add(new Servicio("2","Cambio de pastillas de freno",230));
@@ -127,7 +127,7 @@ public class App extends Application {
     ordenes.addAll(ord1);
     ordenes.addAll(ord2);
      //Agregamos usuarios
-    usuarios.add(new Admin("admin1","12345678","Administrador",TipoUsuario.ADMIN));
+    usuarios.add(new Admin("admin1","123","Administrador",TipoUsuario.ADMIN));
     usuarios.add(new Tecnico("alopez","al123456","Alvaro Lopez",TipoUsuario.TECNICO,ord1));
     usuarios.add(new Cobranza("mcastro","mc123456","Maria Castro",TipoUsuario.COBRANZAS));
     usuarios.add(new Tecnico("mbarcos","mb123456","Maria Barcos",TipoUsuario.TECNICO,ord2));
@@ -176,7 +176,7 @@ public class App extends Application {
     }
 //aqui termina crear
    
-    */
+    
     
     
 }

@@ -5,6 +5,13 @@
  */
 package modelo;
 
+import com.mycompany.proyectog1.App;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+
 
 
 public class Admin extends Usuario{
@@ -12,6 +19,30 @@ public class Admin extends Usuario{
     
     public Admin(String usuario, String contraseña, String nombre, TipoUsuario TipoUsuario) {
         super(usuario, contraseña, nombre, TipoUsuario);
+    }
+    public static ArrayList<Cliente> cargarCliente (){
+        ArrayList<Cliente> list = new ArrayList<>();
+        ObjectInputStream in=null;
+        //TableColumn<String> colum_1 = new TableColumn<>();
+        try {
+            
+            in = new ObjectInputStream(new FileInputStream(App.pathClientes));
+            ArrayList<Cliente> s = (ArrayList<Cliente>) in.readObject();
+            System.out.println(s );
+            System.out.println(s.size());
+            
+            
+            //TableColumn cedula = new TableColumn<Cliente,String>(cedula);
+            in.close();
+            return s;
+        } catch (FileNotFoundException ex) {
+             System.err.println("No se encuentra archivo");
+        } catch (IOException ex) {
+           System.err.println("Error"+ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+           System.err.println("Error"+ex.getMessage());
+        }
+    return list;
     }
      // EL MENU SE HARA EN FX ASI QUE NO HAY NECESIDAD DE PONERLO PEOR LO DEJO POR SI ACASO 
    /* public void menu (){
@@ -143,6 +174,7 @@ public class Admin extends Usuario{
         System.err.println("\n");
         
     }
+    
     public static void m_lista_proveedores() {
         if(NewMain.proveedores.size() != 0){
         for(int ind =0 ; ind < NewMain.proveedores.size(); ind++ ){

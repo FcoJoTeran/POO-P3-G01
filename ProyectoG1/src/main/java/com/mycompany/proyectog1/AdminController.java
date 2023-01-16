@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyectog1;
 
+import static com.mycompany.proyectog1.TecnicoController.tec;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,6 +12,8 @@ import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,10 +25,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import modelo.Admin;
 import modelo.Cliente;
+import modelo.Orden;
 import modelo.TipoCliente;
 
 /**
@@ -144,41 +150,36 @@ public class AdminController implements Initializable {
         }
         else{
             TipoCliente l = TipoCliente.EMPRESARIAL;
-        }
-        
-        ObjectInputStream in=null;
-        //TableColumn<String> colum_1 = new TableColumn<>();
-        try {
             
-            in = new ObjectInputStream(new FileInputStream(App.pathClientes));
-            ArrayList<Cliente> s = (ArrayList<Cliente>) in.readObject();
-            System.out.println(s );
-            System.out.println(s.size());
-            for(Cliente e: s){
-                System.out.println(e.getNombre());
-                System.out.println(e.getCodigo());
-         
-            }
-            //TableColumn cedula = new TableColumn<Cliente,String>(cedula);
-            in.close();
-        } catch (FileNotFoundException ex) {
-             System.err.println("No se encuentra archivo");
-        } catch (IOException ex) {
-           System.err.println("Error"+ex.getMessage());
-        } catch (ClassNotFoundException ex) {
-           System.err.println("Error"+ex.getMessage());
+            TableColumn<Cliente,String> cedula_1 = new TableColumn<Cliente,String>("Cedula");//codigo es la cedula o ruc
+            //TableColumn<Cliente,String> codigo_l = new TableColumn<Cliente,String>("Codigo");
+            TableColumn<Cliente,String> nombre_1 = new TableColumn<Cliente,String>("Nombre");
+            TableColumn<Cliente,String> direccion_1 = new TableColumn<Cliente,String>("Direccion");
+            TableColumn<Cliente,String> telefono_1 = new TableColumn<Cliente,String>("Telefono");
+            TableColumn<Cliente,String> tipoCliente_l = new TableColumn<Cliente,String>("Tipo Cliente");
+            
+            cedula_1.setCellValueFactory(new PropertyValueFactory<>("cedula"));
+            nombre_1.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+            direccion_1.setCellValueFactory(new PropertyValueFactory<>("direccion"));
+            telefono_1.setCellValueFactory(new PropertyValueFactory<>("telefono") );
+            tipoCliente_l.setCellValueFactory(new PropertyValueFactory<>("tipoCliente_1"));
+            
+            tabla_datos.getColumns().setAll(cedula_1,nombre_1,direccion_1,telefono_1,tipoCliente_l);
+            tabla_datos.getItems().setAll(Admin.cargarCliente());
+            
         }
         
         
-           
         
-        
-        
-        
-   
-} 
 
-  
+        
+        
+               
+   
+}
+
+
+
 
     
     

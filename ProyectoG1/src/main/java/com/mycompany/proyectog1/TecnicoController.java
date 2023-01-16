@@ -64,7 +64,7 @@ public class TecnicoController implements Initializable {
         TableColumn<Orden,String> colTotal = new TableColumn<Orden,String>("Total a pagar");
         colTotal.setCellValueFactory(new PropertyValueFactory<>("TotalPagar"));
         //ObservableList<Orden> listOrd = FXCollections.observableArrayList(Orden.cargarOrdenes(App.pathOrdenes));
-        ObservableList<Orden> listOrd = FXCollections.observableArrayList(tec.getListaOrden());
+        ObservableList<Orden> listOrd = FXCollections.observableArrayList(tec.getListaOrden());//
         FilteredList<Orden> filteredData = new FilteredList<>(listOrd, p -> true);
         tabla.setItems(filteredData);
         tabla.getColumns().setAll(colCod,colDate,colCliente,colTotal);
