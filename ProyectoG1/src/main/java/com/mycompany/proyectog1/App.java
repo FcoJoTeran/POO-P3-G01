@@ -25,13 +25,13 @@ public class App extends Application {
     public static String pathProveedores="files/proveedores.ser";
     public static String pathServicios="files/servicios.ser";
     public static String pathOrdenes="files/ordenes.ser";
-    private static Scene scene;
+    public static Scene scene;
 
     @Override
     
     public void start(Stage stage) throws IOException {
-        crearArchivos(); //METODO CREADO PARA CARGAR LAS LISTAS DEL ANTERIOR PROYECTO A ARCHIVOS SER
-        scene = new Scene(loadFXML("vista_login"), 640, 480);
+        //crearArchivos(); //METODO CREADO PARA CARGAR LAS LISTAS DEL ANTERIOR PROYECTO A ARCHIVOS SER
+        scene = new Scene(loadFXML("vista_login"), 900, 550);
        
         
         stage.setScene(scene);
@@ -63,7 +63,7 @@ public class App extends Application {
         
         scene.setRoot(rootNode);
     }
-    
+   /* 
    public void crearArchivos(){
         ArrayList<Usuario> usuarios = new ArrayList<>();
         ArrayList<Cliente> clientes = new ArrayList<>();
@@ -176,7 +176,7 @@ public class App extends Application {
     }
 //aqui termina crear
    
-    
+    */
     
     
 }

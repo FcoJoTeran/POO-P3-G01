@@ -80,7 +80,9 @@ public class TecnicoController implements Initializable {
         searchCliente.setPromptText("Buscar Cliente");
         searchCliente.textProperty().addListener((prop, old, text) -> {
         filteredData.setPredicate(orden -> {
-        if(text == null || text.isEmpty()) return true;
+        if(text == null || text.isEmpty()) 
+        
+        return true;
         
         String cod = orden.getCliente().getNombre().toLowerCase();  
         return cod.contains(text.toLowerCase());
