@@ -105,14 +105,14 @@ public class Cliente extends Persona{
     
     
  
-    /*public static Cliente BuscarCliente(String cod){
-        for(Cliente c: NewMain.clientes){
+    public static Cliente buscarCliente(String cod){
+        /*for(Cliente c: NewMain.clientes){
             
             if(Objects.equals(cod,c.getCodigo()))
                 return c;
-        }
+        }*/
         return null;
-    }*/
+    }
     @Override
     public String toString(){
         

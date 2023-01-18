@@ -63,7 +63,7 @@ public class App extends Application {
         scene.setRoot(rootNode);
     }
    
-   public void crearArchivos(){
+   public static void crearArchivos(){
         ArrayList<Usuario> usuarios = new ArrayList<>();
         ArrayList<Cliente> clientes = new ArrayList<>();
         ArrayList<Servicio> servicios = new ArrayList<>();
