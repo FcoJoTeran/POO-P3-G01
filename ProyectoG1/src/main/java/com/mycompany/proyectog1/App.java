@@ -40,9 +40,8 @@ public class App extends Application {
     }
     public void stop(){
         System.out.println("termino");
-        
-        
-        // para que al cerrar la aplicacion se guarde los archivos
+        Admin.guardarArrayCliente();
+         // para que al cerrar la aplicacion se guarde los archivos
     
     }
 
@@ -77,10 +76,15 @@ public class App extends Application {
      
    
     //Agregamos clientes
+    try{
     clientes.add(new Cliente("545","1", "Carlos", "gye", "5931", TipoCliente.EMPRESARIAL));
     clientes.add(new Cliente("5656","2", "Maria", "uio", "5932", TipoCliente.PERSONAL));
     clientes.add(new Cliente("123465","3", "Esteban", "cue", "5933", TipoCliente.EMPRESARIAL));
     clientes.add(new Cliente("12344","4", "Erick", "gye", "5934", TipoCliente.PERSONAL));
+    
+    }
+    catch(Exception e){
+    }
     //Agregamos servicios
     servicios.add(new Servicio("1","Cambio de filtro",120));
     servicios.add(new Servicio("2","Cambio de pastillas de freno",230));
@@ -149,6 +153,7 @@ public class App extends Application {
         +ex.getMessage());
     }
     //ARCHIVO CLIENTES
+    /*
     try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(pathClientes))){
         out.writeObject(clientes);
         out.flush();
@@ -156,6 +161,7 @@ public class App extends Application {
         System.out.println("ERROR EN CREACION LISTA CLIENTES\n"
         +ex.getMessage());
     }
+*/
     //ARCHIVO ORDENES
      try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(pathOrdenes))){
         out.writeObject(ordenes);

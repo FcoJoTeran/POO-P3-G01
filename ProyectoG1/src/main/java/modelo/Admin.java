@@ -5,11 +5,14 @@
  */
 package modelo;
 
+import com.mycompany.proyectog1.AdminController;
 import com.mycompany.proyectog1.App;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 
@@ -43,6 +46,30 @@ public class Admin extends Usuario{
            System.err.println("Error"+ex.getMessage());
         }
     return list;
+    }
+    public static void guardarArrayCliente(){
+    FileOutputStream fout = null;
+        try {
+            // TODO code application logic here
+            ArrayList<Cliente> l = AdminController.l_mostrar;
+            //System.out.println(l);
+            fout = new FileOutputStream(App.pathClientes);
+            ObjectOutputStream out = new ObjectOutputStream(fout);
+            out.writeObject(l);
+            out.flush();
+
+        } catch (FileNotFoundException ex) {
+            System.err.println("No se encuentra archivo");
+        } catch (IOException ex) {
+           System.err.println(ex.getMessage());
+        } finally {
+            try {
+                fout.close();
+            } catch (IOException ex) {
+                 System.err.println("Error al cerrar archivo");
+            }
+        }
+    
     }
      // EL MENU SE HARA EN FX ASI QUE NO HAY NECESIDAD DE PONERLO PEOR LO DEJO POR SI ACASO 
    /* public void menu (){
@@ -116,46 +143,21 @@ public class Admin extends Usuario{
         }
         sc.close();
                
-    }*/
+    }
     
     
-    /*public static int Agregar_cliente() {
-        
-        Scanner sc1= new Scanner(System.in);
-     
-        System.out.println("1 Agregar Cliente\n" + "2. regresar\n" );
-                    int a = sc1.nextInt();
-                    if(a != 2){
+    public static void Agregar_cliente(String cedula,ArrayList<Cliente>clientes,String nombre,String direccion,String telefono, TipoCliente t) {
+                         
+                String codigo = generar_C_cliente(clientes);
                 
-                System.out.println("Nombre del cliente: "  );
-                String nombre = sc1.next();
+                Cliente cl = new Cliente(cedula,codigo,nombre,direccion,telefono,t);
                 
-                String codigo = generar_C_cliente();
-                System.out.println("Direccion del cliente: "  );
-                String direccion = sc1.next();
-                System.out.println("Telefono del cliente: "  );
-                String telefono = sc1.next();
-                
-                System.out.println("Eliga tipo de cliente 1 Empresarial o 2 Personal"  );
-                int opc = sc1.nextInt();
-                TipoCliente t;
-                if(opc == 1){
-                t = TipoCliente.EMPRESARIAL;
-                }
-                else{
-                t = TipoCliente.PERSONAL;
-                }
-                
-                Cliente cl = new Cliente(codigo,nombre,direccion,telefono,t);
-                
-                NewMain.clientes.add(cl);
-                    
-                    } 
-     return a;
-     
-    }*/
+                clientes.add(cl);
+                         
+     }     
     
-   /* public static void m_lista_Cliente() {
+    
+    public static void m_lista_Cliente() {
         for(int ind =0 ; ind < NewMain.clientes.size(); ind++ ){
                 Cliente cl_ind =  NewMain.clientes.get(ind);
                 String msg = cl_ind.toString(cl_ind);
@@ -189,10 +191,11 @@ public class Admin extends Usuario{
         }
         
     }
+    */
     public static String generar_C_cliente() {
         
-        
-        Cliente u_cliente = NewMain.clientes.get(NewMain.clientes.size() - 1) ;
+        ArrayList<Cliente> l =AdminController.l_cliente;
+        Cliente u_cliente = l.get(l.size() - 1) ;
         String codigo = u_cliente.getCodigo();
         int u_c = Integer.valueOf(codigo)+1;
         String u_c1= u_c + "";
@@ -200,7 +203,7 @@ public class Admin extends Usuario{
         return u_c1;
         
     }
-    
+    /*
     public static String generar_C_servicio() {
         
         
@@ -304,8 +307,8 @@ public class Admin extends Usuario{
         int a = sc1.nextInt();
      return a;   
     }*/
-    
 }
+
 
 
     
