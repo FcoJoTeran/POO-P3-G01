@@ -310,6 +310,7 @@ public class AdminController implements Initializable {
         String [] arr_cliente =  Cliente.valores().split(",");
         int tamaño= arr_cliente.length;
         l_mostrar = new  ArrayList<>();
+        System.out.println(l_cliente);
         /*
         try{
         Cliente cl = new Cliente("sdad", "dfsf", "asd", "uio", "dfsf", TipoCliente.PERSONAL);

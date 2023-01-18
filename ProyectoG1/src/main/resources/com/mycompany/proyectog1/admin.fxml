@@ -78,7 +78,7 @@
    <right>
       <VBox fx:id="datos" alignment="TOP_CENTER" prefHeight="332.0" prefWidth="215.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblmenu" prefHeight="36.0" prefWidth="146.0" text="Agregar Datos nuevos ">
+            <Label fx:id="lblmenu" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="208.0" text="Agregar Datos nuevos ">
                <font>
                   <Font size="14.0" />
                </font>

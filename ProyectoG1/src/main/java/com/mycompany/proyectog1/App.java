@@ -30,7 +30,7 @@ public class App extends Application {
     @Override
     
     public void start(Stage stage) throws IOException {
-        crearArchivos(); //METODO CREADO PARA CARGAR LAS LISTAS DEL ANTERIOR PROYECTO A ARCHIVOS SER
+        //crearArchivos(); //METODO CREADO PARA CARGAR LAS LISTAS DEL ANTERIOR PROYECTO A ARCHIVOS SER
         scene = new Scene(loadFXML("vista_login"), 900, 550);
        
         
@@ -162,6 +162,7 @@ public class App extends Application {
         +ex.getMessage());
     }
 */
+
     //ARCHIVO ORDENES
      try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(pathOrdenes))){
         out.writeObject(ordenes);
