@@ -407,7 +407,7 @@ public class TecnicoController implements Initializable {
         
         Button botonEnviar = new Button("Enviar");
         
-        
+        contenidoOpcion.getChildren().addAll(descrip,llenarDescrip,botonEnviar);
         botonEnviar.setOnMouseClicked(e->{
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
