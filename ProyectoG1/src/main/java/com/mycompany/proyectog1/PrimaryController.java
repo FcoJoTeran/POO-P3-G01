@@ -38,6 +38,7 @@ public class PrimaryController {
     public static Usuario consulta(Usuario u){
         ArrayList<Usuario> usuarios = Usuario.cargarUsuarios(App.pathUsuarios);
         for(Usuario a: usuarios){
+            System.out.println(a.getContrasena());
       if(a.equals(u)){
             return a;
         } 

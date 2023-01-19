@@ -13,7 +13,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -23,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -54,6 +57,9 @@ public class TecnicoController implements Initializable {
     private Label nombreOpcion;
     @FXML
     private VBox contenidoOpcion;
+    
+    
+    public static final String correo = "reportes@gmail.com";
 
     /**
      * Initializes the controller class.
@@ -140,7 +146,7 @@ public class TecnicoController implements Initializable {
         col2.setPercentWidth(60);
 
         for (int i = 0; i < 5; i++) {
-            RowConstraints row = new RowConstraints(50);
+            RowConstraints row = new RowConstraints(10);
             gridPane.getRowConstraints().add(row);
         }
         Label lblCod1 = new Label(ordSel.getCodigo());
@@ -186,6 +192,7 @@ public class TecnicoController implements Initializable {
         ArrayList<Integer> arrCant = new ArrayList<>();
         ArrayList<Usuario> users = Usuario.cargarUsuarios(App.pathUsuarios);
         contenidoOpcion.getChildren().clear();
+        nombreOpcion.setText("Generar Orden");
         
         Label codigo = new Label("Codigo: ");
         codigo.setPrefSize(120, 30);
@@ -292,9 +299,22 @@ public class TecnicoController implements Initializable {
         }
       
         b2.setOnAction(e->{
-        Servicio s1 = new Servicio(llenarCodServicio.getText(),llenarNomServicio.getText(),Integer.valueOf(llenarPrecioServicio.getText()));
+        try{Servicio s1 = new Servicio(llenarCodServicio.getText(),llenarNomServicio.getText(),Integer.valueOf(llenarPrecioServicio.getText()));
         arrServ.add(s1);
-        arrCant.add(Integer.valueOf(llenarCantServicio.getText()));
+        arrCant.add(Integer.valueOf(llenarCantServicio.getText()));}
+        catch(NumberFormatException num){
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error de registro");
+                alert.setHeaderText("Información faltante");
+                alert.setContentText("Datos con fotmato incorrecto");
+                alert.showAndWait();
+        }catch(Exception ioex){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error de registro");
+                alert.setHeaderText("Información faltante");
+                alert.setContentText("Faltan datos");
+                alert.showAndWait();
+        }
         llenarCodServicio.clear();
         llenarNomServicio.clear();
         llenarPrecioServicio.clear();
@@ -311,12 +331,21 @@ public class TecnicoController implements Initializable {
                 GregorianCalendar cal = new GregorianCalendar(anio, mes, dia);
         Cliente cl = Cliente.buscarCliente(llenarCode.getText());
         Orden ord1= new Orden(cl,cal,llenarPlaca.getText(),t,arrServ,arrCant);
+                
         b1.setOnAction(e->{
            
-        tec.getListaOrden().add(ord1);
+            
+            
+        
         //serializar la lista
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathUsuarios))){
-          
+            
+        for(Usuario a: users){
+      if(a.equals(tec)){
+          Tecnico atec = (Tecnico)a;
+          atec.getListaOrden().add(ord1);  
+        } 
+    }
             out.writeObject(users);
             out.flush();
 
@@ -324,7 +353,7 @@ public class TecnicoController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText("Resultado de la operaci+on");
-            alert.setContentText("Nuevo empleado agregado exitosamente");
+            alert.setContentText("Nueva orden agregado exitosamente");
 
             alert.showAndWait();
             //carga la ventana principal
@@ -342,8 +371,19 @@ public class TecnicoController implements Initializable {
             
             
 
+        }catch(NumberFormatException num){
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error de registro");
+                alert.setHeaderText("Información faltante");
+                alert.setContentText("Datos con fotmato incorrecto");
+                alert.showAndWait();
         } catch (IOException ex) {
             System.out.println("IOException:" + ex.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error de registro");
+                alert.setHeaderText("Información faltante");
+                alert.setContentText("Faltan datos");
+                alert.showAndWait();
         } 
         
         });
@@ -351,6 +391,45 @@ public class TecnicoController implements Initializable {
 
     @FXML
     private void reportarFalta(ActionEvent event) {
+        
+        contenidoOpcion.getChildren().clear();
+        nombreOpcion.setText("Reportar falta de insumos");
+         Label descrip = new Label("Descripción: ");
+        descrip.setPrefSize(120, 30);
+        
+        TextField llenarDescrip = new TextField();
+        llenarDescrip.setPrefSize(200, 400);
+        llenarDescrip.setPromptText("Escriba la descripción de lo que desee reportar");
+        
+        Button botonEnviar = new Button("Enviar");
+        
+        
+        botonEnviar.setOnMouseClicked(e->{
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Confirmación");
+        alert.setContentText("¿Estas seguro de enviar el reporte?");
+        Optional<ButtonType> action = alert.showAndWait();
+        // Si hemos pulsado en aceptar
+        if (action.get() == ButtonType.OK) {
+            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+            alert1.setTitle("Information Dialog");
+            alert1.setHeaderText("Resultado de la operación");
+            alert1.setContentText("Reporte enviado exitosamente a"+correo);
+
+            alert1.showAndWait();
+            llenarDescrip.clear();
+        } else {
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+            alert2.setTitle("Information Dialog");
+            alert2.setHeaderText("Resultado de la operación");
+            alert2.setContentText("Reporte no enviado");
+
+            alert2.showAndWait();
+            llenarDescrip.clear();
+        }
+        });
+        
     }
     
     
