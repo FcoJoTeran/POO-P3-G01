@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
@@ -33,11 +34,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
+import modelo.Admin;
 import modelo.Cliente;
 import modelo.Orden;
 import modelo.Servicio;
@@ -52,12 +55,14 @@ import modelo.Usuario;
  */
 public class TecnicoController implements Initializable {
     public static Tecnico tec;
+    
 
     @FXML
     private Label nombreOpcion;
     @FXML
     private VBox contenidoOpcion;
     
+    public TableView tabla;
     
     public static final String correo = "reportes@gmail.com";
 
@@ -72,7 +77,7 @@ public class TecnicoController implements Initializable {
     @FXML
     private void consultarOrden(ActionEvent event) {
         contenidoOpcion.getChildren().clear();
-        TableView tabla = new TableView();
+        tabla = new TableView();
         TableColumn<Orden,String> colCod = new TableColumn<Orden,String>("Codigo");
         colCod.setCellValueFactory(new PropertyValueFactory<>("Codigo"));
         TableColumn<Orden,String> colDate = new TableColumn<Orden,String>("Fecha");
@@ -86,7 +91,7 @@ public class TecnicoController implements Initializable {
         FilteredList<Orden> filteredData = new FilteredList<>(listOrd, p -> true);
         tabla.setItems(filteredData);
         tabla.getColumns().setAll(colCod,colDate,colCliente,colTotal);
-        
+        //añade en un hbox los valores buscar
         TextField searchCod = new TextField();
         searchCod.setPromptText("Buscar Codigo");
         searchCod.textProperty().addListener((prop, old, text) -> {
@@ -188,7 +193,7 @@ public class TecnicoController implements Initializable {
 
     @FXML
     private void generarOrden(ActionEvent event) {
-        ArrayList<Servicio> arrServ = new ArrayList<>();
+        
         ArrayList<Integer> arrCant = new ArrayList<>();
         ArrayList<Usuario> users = Usuario.cargarUsuarios(App.pathUsuarios);
         contenidoOpcion.getChildren().clear();
@@ -297,13 +302,28 @@ public class TecnicoController implements Initializable {
         }else if(bus.isSelected()){
             t =  TipoVehiculo.BUS;
         }
-      
+      ArrayList<Servicio> arrser= new ArrayList<>();
         b2.setOnAction(e->{
-
+       arrCant.add(Integer.valueOf(llenarCantServicio.getText()));
+            
+/*
         try{
-            Servicio s1 = new Servicio(llenarCodServicio.getText(),llenarNomServicio.getText(),Integer.valueOf(llenarPrecioServicio.getText()));
+            
+        ArrayList<Servicio> arrServ = new ArrayList<>();
+        Servicio s1 = new Servicio(llenarCodServicio.getText(),llenarNomServicio.getText(),Integer.valueOf(llenarPrecioServicio.getText()));
         arrServ.add(s1);
-        arrCant.add(Integer.valueOf(llenarCantServicio.getText()));}
+        
+*/
+Servicio servicio_en = null;
+
+        for(Servicio servicio_1:Admin.cargarServicio()){
+        if(servicio_1.getCodigo().equals(llenarCodServicio+"")){
+        servicio_en = servicio_1;
+        arrser.add(servicio_en);
+        }
+        }
+        
+/*
         catch(NumberFormatException num){
              Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error de registro");
@@ -318,11 +338,13 @@ public class TecnicoController implements Initializable {
                 alert.showAndWait();
                 ioex.getStackTrace();
         }
-
-        llenarCodServicio.clear();
+*/
+        llenarCodServicio.setText("");
         llenarNomServicio.clear();
         llenarPrecioServicio.clear();
         llenarCantServicio.clear();
+            System.err.println(arrser);
+        
         });
         
         
@@ -334,7 +356,7 @@ public class TecnicoController implements Initializable {
                 int anio = Integer.valueOf(fechArray[2]);
                 GregorianCalendar cal = new GregorianCalendar(anio, mes, dia);
         Cliente cl = Cliente.buscarCliente(llenarCode.getText());
-        Orden ord1= new Orden(cl,cal,llenarPlaca.getText(),t,arrServ,arrCant);
+        Orden ord1= new Orden(cl,cal,llenarPlaca.getText(),t,arrser,arrCant);
                 
         b1.setOnAction(e->{
            
@@ -434,6 +456,15 @@ public class TecnicoController implements Initializable {
         }
         });
         
+    }
+    @FXML
+    public void volvermenu(ActionEvent event) throws IOException{
+        
+   
+        App.setRoot("vista_login");
+     
+        
+
     }
     
     

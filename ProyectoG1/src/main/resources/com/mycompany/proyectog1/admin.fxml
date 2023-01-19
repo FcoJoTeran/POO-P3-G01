@@ -28,7 +28,7 @@
                      </font>
                   </Label>
                </children></VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="726.0">
+            <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="512.0">
                <children>
                   <AnchorPane prefHeight="24.0" prefWidth="175.0" />
                   <Label text="Tabla de ">
@@ -42,6 +42,11 @@
                      </font>
                   </Label>
                </children></VBox>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="216.0">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#volvermenu" prefHeight="70.0" prefWidth="150.0" text="Salir" />
+               </children>
+            </VBox>
          </children>
       </HBox>
    </top>

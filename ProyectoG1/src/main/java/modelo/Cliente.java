@@ -6,6 +6,7 @@
 package modelo;
 //import com.mycompany.proyecto.NewMain;
 //import com.mycompany.proyecto.modelo.Persona;
+import com.mycompany.proyectog1.AdminController;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -106,11 +107,11 @@ public class Cliente extends Persona{
     
  
     public static Cliente buscarCliente(String cod){
-        /*for(Cliente c: NewMain.clientes){
+        for(Cliente c: AdminController.l_mostrar_cliente){
             
             if(Objects.equals(cod,c.getCodigo()))
                 return c;
-        }*/
+        }
         return null;
     }
     @Override

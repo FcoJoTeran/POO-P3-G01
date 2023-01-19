@@ -291,6 +291,13 @@ public class AdminController implements Initializable {
         //TableColumn<String> colum_1 = new TableColumn<>();
 
 }
+    
+    @FXML
+    void volvermenu(ActionEvent event) throws IOException{
+        App.setRoot("vista_login");
+        
+
+    }
     @FXML
     public void btnProveedor(ActionEvent event) {
         tabla_datos.getColumns().clear();

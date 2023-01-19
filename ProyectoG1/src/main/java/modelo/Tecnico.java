@@ -45,6 +45,7 @@ public class Tecnico extends Usuario{
    public ArrayList<Orden> getListaOrden(){
        return listaOrden;
    }
+   
  // EL MENU SE HARA EN FX ASI QUE NO HAY NECESIDAD DE PONERLO PERo LO DEJO POR SI ACASO 
 
 //Se escribe el menu
@@ -137,4 +138,49 @@ public class Tecnico extends Usuario{
    }
 }while(opc != 3);
 }*/
+
+    public ArrayList<String> getReportes() {
+        return reportes;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public modelo.TipoUsuario getTipoUsuario() {
+        return TipoUsuario;
+    }
+
+    public void setListaOrden(ArrayList<Orden> listaOrden) {
+        this.listaOrden = listaOrden;
+    }
+
+    public void setReportes(ArrayList<String> reportes) {
+        this.reportes = reportes;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setTipoUsuario(modelo.TipoUsuario TipoUsuario) {
+        this.TipoUsuario = TipoUsuario;
+    }
+    
 }
