@@ -51,7 +51,7 @@ public class Admin extends Usuario{
     FileOutputStream fout = null;
         try {
             // TODO code application logic here
-            ArrayList<Cliente> l = AdminController.l_mostrar;
+            ArrayList<Cliente> l = AdminController.l_mostrar_cliente;
             //System.out.println(l);
             fout = new FileOutputStream(App.pathClientes);
             ObjectOutputStream out = new ObjectOutputStream(fout);
@@ -70,6 +70,56 @@ public class Admin extends Usuario{
             }
         }
     
+    }
+    
+    public static ArrayList<Proveedor> cargarProveedor (){
+        ArrayList<Proveedor> list = new ArrayList<>();
+        ObjectInputStream in=null;
+        //TableColumn<String> colum_1 = new TableColumn<>();
+        try {
+            
+            in = new ObjectInputStream(new FileInputStream(App.pathProveedores));
+            ArrayList<Proveedor> s = (ArrayList<Proveedor>)in.readObject();
+            System.out.println(s );
+            System.out.println(s.size());
+            
+            
+            //TableColumn cedula = new TableColumn<Cliente,String>(cedula);
+            in.close();
+            return s;
+        } catch (FileNotFoundException ex) {
+             System.err.println("No se encuentra archivo");
+        } catch (IOException ex) {
+           System.err.println("Error"+ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+           System.err.println("Error"+ex.getMessage());
+        }
+    return list;
+    }
+    
+    public static ArrayList<Servicio> cargarServicio (){
+        ArrayList<Servicio> list = new ArrayList<>();
+        ObjectInputStream in=null;
+        //TableColumn<String> colum_1 = new TableColumn<>();
+        try {
+            
+            in = new ObjectInputStream(new FileInputStream(App.pathServicios));
+            ArrayList<Servicio> s = (ArrayList<Servicio>)in.readObject();
+            System.out.println(s );
+            System.out.println(s.size());
+            
+            
+            //TableColumn cedula = new TableColumn<Cliente,String>(cedula);
+            in.close();
+            return s;
+        } catch (FileNotFoundException ex) {
+             System.err.println("No se encuentra archivo");
+        } catch (IOException ex) {
+           System.err.println("Error"+ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+           System.err.println("Error"+ex.getMessage());
+        }
+    return list;
     }
      // EL MENU SE HARA EN FX ASI QUE NO HAY NECESIDAD DE PONERLO PEOR LO DEJO POR SI ACASO 
    /* public void menu (){
@@ -203,11 +253,11 @@ public class Admin extends Usuario{
         return u_c1;
         
     }
-    /*
+    
     public static String generar_C_servicio() {
         
         
-        Servicio u_cliente = NewMain.servicios.get(NewMain.servicios.size() - 1) ;
+        Servicio u_cliente =AdminController.l_servicio.get(cargarCliente().size() - 1) ;
         String codigo = u_cliente.getCodigo();
         int u_c = Integer.valueOf(codigo)+1;
         String u_c1= u_c + "";
@@ -215,6 +265,7 @@ public class Admin extends Usuario{
         return u_c1;
         
     }
+    /*
     public static String generar_C_proveedor() {
         
         if( NewMain.proveedores.size() != 0){

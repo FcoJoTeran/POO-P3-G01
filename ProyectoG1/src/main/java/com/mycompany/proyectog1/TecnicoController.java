@@ -299,7 +299,9 @@ public class TecnicoController implements Initializable {
         }
       
         b2.setOnAction(e->{
-        try{Servicio s1 = new Servicio(llenarCodServicio.getText(),llenarNomServicio.getText(),Integer.valueOf(llenarPrecioServicio.getText()));
+
+        try{
+            Servicio s1 = new Servicio(llenarCodServicio.getText(),llenarNomServicio.getText(),Integer.valueOf(llenarPrecioServicio.getText()));
         arrServ.add(s1);
         arrCant.add(Integer.valueOf(llenarCantServicio.getText()));}
         catch(NumberFormatException num){
@@ -314,7 +316,9 @@ public class TecnicoController implements Initializable {
                 alert.setHeaderText("Información faltante");
                 alert.setContentText("Faltan datos");
                 alert.showAndWait();
+                ioex.getStackTrace();
         }
+
         llenarCodServicio.clear();
         llenarNomServicio.clear();
         llenarPrecioServicio.clear();

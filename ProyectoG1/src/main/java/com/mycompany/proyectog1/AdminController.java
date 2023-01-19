@@ -31,6 +31,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import modelo.Cliente;
 import modelo.Admin;
+import modelo.Proveedor;
+import modelo.Servicio;
 import modelo.TipoCliente;
 
 /**
@@ -56,9 +58,6 @@ public class AdminController implements Initializable {
     private Button btnEliminar;
 
     @FXML
-    private Button btnProveedor;
-
-    @FXML
     private Button btnServicio;
 
     @FXML
@@ -81,11 +80,15 @@ public class AdminController implements Initializable {
     public TextField en_nombre;
     public HBox cajGuardar;
     public static ArrayList<Cliente>  l_cliente = Admin.cargarCliente();
-    public static ArrayList<Cliente> l_mostrar;
+    public static ArrayList<Cliente> l_mostrar_cliente;
+    public static ArrayList<Proveedor>  l_proveedor = Admin.cargarProveedor();
+    public static ArrayList<Proveedor> l_mostrar_proveedor;
+    public static ArrayList<Servicio> l_mostrar_servicio;
+    public static ArrayList<Servicio>  l_servicio = Admin.cargarServicio();
 
 
     @FXML
-    private TableView<Cliente> tabla_datos;
+    private TableView tabla_datos;
       @FXML
     private Label lblmenu;
 
@@ -170,6 +173,7 @@ public class AdminController implements Initializable {
         datosAñadir.getChildren().addAll(cajGuardar);
         
         btnAgregar.setOnMouseClicked(eh->{
+            lblmenu.setText("Agrgar Dato");
             cajGuardar.getChildren().clear();
             String cedula_1 = en_cedula.getText()+"";
         String direccion_1 = en_dirección.getText()+"";
@@ -206,6 +210,7 @@ public class AdminController implements Initializable {
         
         
         btnEditar.setOnMouseClicked(eh->{
+            lblmenu.setText("Editar Dato");
         //String cedula_1 = en_cedula.getText()+"";
         //String direccion_1 = en_dirección.getText()+"";
         //String  nombre_1 = en_nombre.getText()+"";
@@ -261,28 +266,8 @@ public class AdminController implements Initializable {
         en_empresarial.setSelected(false);
         en_personal.setSelected(false);
         });
-        
-        
-        
-        
-        /*
-        if(!(cedula_1.equals(""))){
-            cl.setCedula(cedula_1);
             
-        }
-        if(!(nombre.equals(""))){
-        cl.setNombre(nombre_1);
-        }
-        if(!(direccion.equals(""))){
-        cl.setDireccion(direccion_1);
-        }
-        if(!(telefono.equals(""))){
-        cl.setTelefono(telefono_1);
-        }
-        if (!(tipo_cl.equals(null))){
-        cl.setTipoCliente_1(tipo_cl);
-        }
-        */
+        
         });
         
         btnEliminar.setOnMouseClicked(eh->{
@@ -292,6 +277,7 @@ public class AdminController implements Initializable {
         Cliente cl = (Cliente) tabla_datos.getSelectionModel().getSelectedItem();
         cl.setMostrar(false);
         cargarTabla_cliente();
+        
         
         });
         
@@ -305,12 +291,146 @@ public class AdminController implements Initializable {
         //TableColumn<String> colum_1 = new TableColumn<>();
 
 }
+    @FXML
+    public void btnProveedor(ActionEvent event) {
+        tabla_datos.getColumns().clear();
+        datos.setVisible(true);
+        menu_edits.setVisible(true);
+
+
+
+        nombreTabla.setText("Proveedor");
+        nombreMenu.setText("Proveedor");
+
+        datosAñadir.getChildren().clear();
+        Label cedula = new Label("Cedula");
+        cedula.setPrefSize(120, 30);
+
+         en_cedula = new TextField();
+        en_cedula.setPrefSize(100, 30);
+        en_cedula.setPromptText("digite cedula del cliente");
+
+        Label nombre = new Label("Nombre");
+        nombre.setPrefSize(120, 30);
+
+        en_nombre = new TextField();
+        en_nombre.setPrefSize(100, 30);
+        en_nombre.setPromptText("digite  el nombre");
+
+        Label direccion = new Label("Direccion: ");
+        direccion.setPrefSize(120, 30);
+        en_dirección = new TextField();
+        en_dirección.setPrefSize(100, 30);
+        en_dirección.setPromptText("digite  el direccion");
+
+
+        Label telefono = new Label("Telefono ");
+        telefono.setPrefSize(120, 30);
+        en_telefono = new TextField();
+        en_telefono.setPrefSize(100, 30);
+        en_telefono.setPromptText("digite  el direccion");
+
+        datosAñadir.getChildren().addAll(cedula, en_cedula,nombre,en_nombre, direccion, en_dirección,telefono,en_telefono);
+        datosAñadir.setMargin(cedula, new Insets(0, 0, 5,0));
+        datosAñadir.setMargin(nombre, new Insets(5, 0, 5, 0));
+        datosAñadir.setMargin(direccion, new Insets(5, 0, 5, 0));
+        datosAñadir.setMargin(telefono, new Insets(5, 0, 5, 0));
+        cargarTabla_proveedor();
+        cajGuardar = new HBox();
+        
+        datosAñadir.getChildren().addAll(cajGuardar);
+        
+        btnAgregar.setOnMouseClicked(eh->{
+            lblmenu.setText("Agrgar Dato");
+            cajGuardar.getChildren().clear();
+        String cedula_1 = en_cedula.getText()+"";
+        String direccion_1 = en_dirección.getText()+"";
+        String  nombre_1 = en_nombre.getText()+"";
+        String telefono_1 = en_telefono.getText()+"";
+                 
+            try{
+            Proveedor pr = new Proveedor(cedula_1,nombre_1,direccion_1,telefono_1);
+            l_proveedor.add(pr);
+            cargarTabla_proveedor();
+            }
+            catch(IOException e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("faltan datos");
+                alert.setHeaderText("faltan datos");
+                alert.setContentText("faltan datos");
+                alert.showAndWait();
+            }
+            en_cedula.setText("");
+            en_dirección.setText("");
+            en_nombre.setText("");
+            en_telefono.setText("");
+        });
+        
+        btnEditar.setOnMouseClicked(eh->{
+            lblmenu.setText("Editar Dato");
+        
+       
+       cajGuardar.getChildren().clear();
+       
+       Button btnguarda_pr = new Button("Guardar_pr");
+       
+       cajGuardar.getChildren().add(btnguarda_pr);
+       
+
+            Proveedor cl = (Proveedor) tabla_datos.getSelectionModel().getSelectedItem();
+
+        en_cedula.setText(cl.getCodigo()+"");
+        
+        
+        en_dirección.setText(cl.getDireccion()+"");
+        
+        en_nombre.setText(cl.getNombre()+"");
+       
+        en_telefono.setText(cl.getTelefono()+"");
+        
+        
+        btnguarda_pr.setOnMouseClicked(ev->{
+            
+        cl.setCodigo(en_cedula.getText());
+        cl.setDireccion(en_dirección.getText());
+        cl.setNombre(en_nombre.getText());
+        cl.setTelefono(en_telefono.getText());
+        cargarTabla_proveedor();
+        en_cedula.setText("");
+        
+        
+        en_dirección.setText("");
+        
+        en_nombre.setText("");
+       
+        en_telefono.setText("");
+
+        });
+            
+        
+        });
+        
+        btnEliminar.setOnMouseClicked(eh->{
+        //datosAñadir.setVisible(false);
+        menu_edits.setVisible(true);
+        lblmenu.setText("Dato borrado exitosamente");
+        Proveedor cl = (Proveedor) tabla_datos.getSelectionModel().getSelectedItem();
+        cl.setMostrar(false);
+        cargarTabla_proveedor();
+        
+        });
+        
+
+    }
+    
+    
     public void cargarTabla_cliente() {
         tabla_datos.getColumns().clear();
         String [] arr_cliente =  Cliente.valores().split(",");
         int tamaño= arr_cliente.length;
-        l_mostrar = new  ArrayList<>();
+        l_mostrar_cliente = new  ArrayList<>();
         System.out.println(l_cliente);
+        
         /*
         try{
         Cliente cl = new Cliente("sdad", "dfsf", "asd", "uio", "dfsf", TipoCliente.PERSONAL);
@@ -320,10 +440,11 @@ public class AdminController implements Initializable {
         }
         catch(IOException e){
         }
+        
 */
         for(Cliente e:l_cliente){
         if(e.isMostrar()){
-        l_mostrar.add(e);
+        l_mostrar_cliente.add(e);
         }
         }
         for(int i = 0; i<tamaño;){
@@ -337,9 +458,192 @@ public class AdminController implements Initializable {
         i++;
         
         }
-         tabla_datos.getItems().setAll(l_mostrar);
+         tabla_datos.getItems().setAll(l_mostrar_cliente);
          
         }
+    public void cargarTabla_proveedor() {
+        tabla_datos.getColumns().clear();
+        String [] arr_cliente =  Proveedor.valores().split(",");
+        int tamaño= arr_cliente.length;
+        l_mostrar_proveedor = new  ArrayList<>();
+        System.out.println(l_proveedor);
+
+        for(Proveedor a:l_proveedor){
+        if(a.isMostrar()){
+        l_mostrar_proveedor.add(a);
+        }
+        }
+        for(int i = 0; i<tamaño;){
+        String valor = arr_cliente[i]+"";
+            System.err.println(valor);
+            //System.out.println(""+i);
+            //System.out.println(valor);
+        TableColumn<Proveedor,String> t = new TableColumn<Proveedor,String>(valor);
+        
+        t.setCellValueFactory(new PropertyValueFactory<>(valor));
+        tabla_datos.getColumns().add(t);
+        i++;
+        }
+        tabla_datos.getItems().setAll(l_mostrar_proveedor);
+        }
+    
+    
+    
+    
+      @FXML
+    public void btnServicio(ActionEvent event) {
+        tabla_datos.getColumns().clear();
+        datos.setVisible(true);
+        menu_edits.setVisible(true);
+
+
+
+        nombreTabla.setText("Servicio");
+        nombreMenu.setText("Servicio");
+
+        datosAñadir.getChildren().clear();
+        
+        Label nombre = new Label("Nombre");
+        nombre.setPrefSize(120, 30);
+
+        en_nombre = new TextField();
+        en_nombre.setPrefSize(100, 30);
+        en_nombre.setPromptText("digite  el nombre");
+
+        Label direccion = new Label("Precio ");
+        direccion.setPrefSize(120, 30);
+        en_dirección = new TextField();
+        en_dirección.setPrefSize(100, 30);
+        en_dirección.setPromptText("digite  precio");
+        
+        datosAñadir.getChildren().addAll( nombre,en_nombre, direccion, en_dirección);
+        
+        datosAñadir.setMargin(nombre, new Insets(5, 0, 5, 0));
+        datosAñadir.setMargin(direccion, new Insets(5, 0, 5, 0));
+        
+        cargarTabla_Servicio();
+        cajGuardar = new HBox();
+        
+        datosAñadir.getChildren().addAll(cajGuardar);
+        
+        btnAgregar.setOnMouseClicked(eh->{
+            lblmenu.setText("Agrgar Dato");
+            cajGuardar.getChildren().clear();
+        
+        String direccion_1 = en_dirección.getText();
+        String  nombre_1 = en_nombre.getText()+"";
+        
+                 
+            try{
+            double precio = Double.valueOf(direccion_1);
+            Servicio sr = new Servicio(Admin.generar_C_servicio(),nombre_1, precio);
+            l_servicio.add(sr);
+            cargarTabla_Servicio();
+            }
+            catch(NumberFormatException e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("pon bien el numero");
+                alert.setHeaderText("pon bien el numero");
+                alert.setContentText("pon bien el numero");
+                alert.showAndWait();
+            }
+            catch(IOException e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("faltan datos");
+                alert.setHeaderText("faltan datos");
+                alert.setContentText("faltan datos");
+                alert.showAndWait();
+            }
+            
+            en_dirección.setText("");
+            en_nombre.setText("");
+            
+            
+        });
+        
+        btnEditar.setOnMouseClicked(eh->{
+            lblmenu.setText("Editar Dato");
+        
+       
+       cajGuardar.getChildren().clear();
+       
+       Button btnguarda_pr = new Button("Guardar_pr");
+       
+       cajGuardar.getChildren().add(btnguarda_pr);
+       
+
+            Servicio cl = (Servicio) tabla_datos.getSelectionModel().getSelectedItem();
+
+        
+        
+        
+        en_dirección.setText(cl.getPrecio()+"");
+        
+        en_nombre.setText(cl.getNombre()+"");
+       
+        
+        
+        
+        btnguarda_pr.setOnMouseClicked(ev->{
+        
+        
+        cl.setPrecio(Double.valueOf(en_dirección.getText()));
+        cl.setNombre(en_nombre.getText());
+       
+        cargarTabla_Servicio();
+        
+        en_dirección.setText("");
+        
+        en_nombre.setText("");
+       
+        });
+        
+        
+        
+
+
+    });
+        
+        
+        btnEliminar.setOnMouseClicked(eh->{
+        //datosAñadir.setVisible(false);
+        menu_edits.setVisible(true);
+        lblmenu.setText("Dato borrado exitosamente");
+            Servicio cl = (Servicio) tabla_datos.getSelectionModel().getSelectedItem();
+        cl.setMostrar(false);
+        cargarTabla_Servicio();
+        
+        });
+    }
+    public void cargarTabla_Servicio() {
+        tabla_datos.getColumns().clear();
+        String [] arr_cliente =  Servicio.valores().split(",");
+        int tamaño= arr_cliente.length;
+        l_mostrar_servicio = new  ArrayList<>();
+        System.out.println(l_servicio);
+
+        for(Servicio s:l_servicio){
+        if(s.isMostrar()){
+        l_mostrar_servicio.add(s);
+        }
+        }
+        for(int i = 0; i<tamaño;){
+        String valor = arr_cliente[i]+"";
+            System.err.println(valor);
+            //System.out.println(""+i);
+            //System.out.println(valor);
+        TableColumn<Servicio,String> t = new TableColumn<Servicio,String>(valor);
+        
+        t.setCellValueFactory(new PropertyValueFactory<>(valor));
+        tabla_datos.getColumns().add(t);
+        i++;
+        }
+        tabla_datos.getItems().setAll(l_mostrar_servicio);
+        }
+    
+     
+        
+        
     
     
     }

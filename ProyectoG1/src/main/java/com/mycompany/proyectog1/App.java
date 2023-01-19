@@ -30,7 +30,7 @@ public class App extends Application {
     @Override
     
     public void start(Stage stage) throws IOException {
-        //crearArchivos(); //METODO CREADO PARA CARGAR LAS LISTAS DEL ANTERIOR PROYECTO A ARCHIVOS SER
+        crearArchivos(); //METODO CREADO PARA CARGAR LAS LISTAS DEL ANTERIOR PROYECTO A ARCHIVOS SER
         scene = new Scene(loadFXML("vista_login"), 900, 550);
        
         
@@ -86,15 +86,25 @@ public class App extends Application {
     catch(Exception e){
     }
     //Agregamos servicios
+    try{
     servicios.add(new Servicio("1","Cambio de filtro",120));
     servicios.add(new Servicio("2","Cambio de pastillas de freno",230));
     servicios.add(new Servicio("3","Cambio de amortiguadores",120));
     servicios.add(new Servicio("4","Cambio de embragues",145));
     servicios.add(new Servicio("5","Cambio de filtro",120));
     servicios.add(new Servicio("6","Cambio de filtro",120));
+    }
+    catch(IOException e){
+        
+    }
     //Agregamos proveedores 
+    try{
     proveedores.add(new Proveedor("1", "Justin", "Quito", "5935"));
     proveedores.add(new Proveedor("2", "Francisco", "Machala", "5936"));
+    }
+    catch(Exception e){
+    }
+    
     //Creamos los ArrayList para los servicios que van en cada orden de cada tecnico con su respectiva cantidad
      ArrayList<Servicio> serv1 = new ArrayList<>();
      serv1.add(servicios.get(0));
@@ -153,7 +163,7 @@ public class App extends Application {
         +ex.getMessage());
     }
     //ARCHIVO CLIENTES
-    /*
+    
     try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(pathClientes))){
         out.writeObject(clientes);
         out.flush();
@@ -161,7 +171,7 @@ public class App extends Application {
         System.out.println("ERROR EN CREACION LISTA CLIENTES\n"
         +ex.getMessage());
     }
-*/
+
 
     //ARCHIVO ORDENES
      try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(pathOrdenes))){

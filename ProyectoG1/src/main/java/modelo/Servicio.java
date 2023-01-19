@@ -7,6 +7,7 @@ package modelo;
 
 //import com.mycompany.proyecto.NewMain;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -21,7 +22,11 @@ public class Servicio implements Serializable{
     boolean mostrar;
     //private static final long serialVersionUID = 1234567L;
 
-    public Servicio(String codigo, String nombre, double precio) {
+    public Servicio(String codigo, String nombre, double precio) throws IOException{
+        if(nombre.equals("")){
+        throw new IOException(
+        );
+        }
         this.codigo = codigo;
         this.nombre = nombre;
         this.precio = precio;
@@ -43,6 +48,29 @@ public class Servicio implements Serializable{
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+    
+     public static String valores(){
+        String mensaje = "codigo,nombre,precio";
+    return mensaje;
+    }
+
+    public boolean isMostrar() {
+        return mostrar;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setMostrar(boolean mostrar) {
+        this.mostrar = mostrar;
+    }
+     
+    
     
     
    /* public static double TotalServicio(Servicio s,int mes2, int agno2){
