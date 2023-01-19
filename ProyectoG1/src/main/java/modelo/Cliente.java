@@ -119,7 +119,7 @@ public class Cliente extends Persona{
         return nombre;
     }
     public static String valores(){
-        String mensaje = "cedula,nombre,direccion,telefono";
+        String mensaje = "cedula,nombre,direccion,telefono,tipoCliente_1";
     return mensaje;
     }
     

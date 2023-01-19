@@ -49,8 +49,8 @@
       <AnchorPane prefHeight="300.0" prefWidth="175.0" BorderPane.alignment="CENTER">
          <children>
             <Button layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnClientes" prefHeight="70.0" prefWidth="150.0" text="Clientes" />
-            <Button fx:id="btnProveedor" layoutX="13.0" layoutY="115.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Proveedor" />
-            <Button fx:id="btnServicio" layoutX="13.0" layoutY="216.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Servicio" />
+            <Button layoutX="13.0" layoutY="115.0" mnemonicParsing="false" onAction="#btnProveedor" prefHeight="70.0" prefWidth="150.0" text="Proveedor" />
+            <Button layoutX="13.0" layoutY="216.0" mnemonicParsing="false" onAction="#btnServicio" prefHeight="70.0" prefWidth="150.0" text="Servicio" />
          </children>
       </AnchorPane>
    </left>

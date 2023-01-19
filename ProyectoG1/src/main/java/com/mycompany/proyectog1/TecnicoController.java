@@ -292,8 +292,14 @@ public class TecnicoController implements Initializable {
         }
       
         b2.setOnAction(e->{
-        Servicio s1 = new Servicio(llenarCodServicio.getText(),llenarNomServicio.getText(),Integer.valueOf(llenarPrecioServicio.getText()));
-        arrServ.add(s1);
+            try{
+            Servicio s1 = new Servicio(llenarCodServicio.getText(),llenarNomServicio.getText(),Integer.valueOf(llenarPrecioServicio.getText()));
+            arrServ.add(s1);
+            }
+            catch(IOException exception){
+            }
+        
+        
         arrCant.add(Integer.valueOf(llenarCantServicio.getText()));
         llenarCodServicio.clear();
         llenarNomServicio.clear();
