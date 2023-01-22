@@ -96,4 +96,20 @@ public class Orden implements Serializable{
             //return fmt.format(getFecha());
             return getFecha().getTime().toLocaleString();
        }
+
+    public void setServicios(ArrayList<Servicio> servicios) {
+        this.servicios = servicios;
+    }
+
+    public void setCantidad(ArrayList<Integer> cantidad) {
+        this.cantidad = cantidad;
+    }
+    
+    public String getStringServicio(){
+        return servicios.get(0).getNombre();
+    }
+    
+    public int getStringCantidad(){
+        return cantidad.get(0);
+    }
 }

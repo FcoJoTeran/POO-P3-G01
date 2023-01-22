@@ -7,8 +7,13 @@ package modelo;
 
 //import com.mycompany.proyecto.NewMain;
 
+import com.mycompany.proyectog1.App;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -73,9 +78,10 @@ public class Servicio implements Serializable{
     
     
     
-   /* public static double TotalServicio(Servicio s,int mes2, int agno2){
+    
+   public static double TotalServicio(Servicio s,int mes2, int agno2){
         double total = 0;
-    for(Orden o: NewMain.ordenes){
+    for(Orden o: Orden.cargarOrdenes(App.pathOrdenes)){
                     if(o.getFecha().get(Calendar.MONTH) == mes2 && (o.getFecha().get(Calendar.YEAR) == agno2 )){
                         for(Servicio ser: o.getServicios()){
                         if(ser.equals(s)){
@@ -88,7 +94,7 @@ public class Servicio implements Serializable{
     return total;
     }
     
-    public static Servicio BuscarServicio(String servicio){
+   /* public static Servicio BuscarServicio(String servicio){
         for(Servicio s: NewMain.servicios){
             if(servicio.equals(s.getCodigo()))
                 return s;

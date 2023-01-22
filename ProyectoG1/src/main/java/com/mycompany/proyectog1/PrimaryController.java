@@ -90,10 +90,12 @@ public class PrimaryController {
             
         }}
         catch (FileNotFoundException e){
-        System.out.println("Error en inicio de sesion:"+ e.getMessage());
+        System.out.println("Error en inicio de sesion: (Archivo) "+ e.getMessage());
+            System.out.println(e.getStackTrace());
         }
         catch(Exception e){
-            System.out.println("Error en inicio de sesion:"+ e.getMessage());
+            System.out.println("Error en inicio de sesion: "+ e.getMessage());
+            System.out.println(e.getStackTrace());
         }
          
     }
@@ -115,6 +117,7 @@ public class PrimaryController {
         fxmlLoader.setController(ct);
         HBox root = (HBox) fxmlLoader.load(); //SE carga el hbox principal de la ventana
         ct.tec = tec;
+        ct.listaOrdenTec =tec.getListaOrden();
         App.changeRoot(root);
     }
     

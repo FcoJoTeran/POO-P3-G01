@@ -64,6 +64,8 @@ public class TecnicoController implements Initializable {
     
     public TableView tabla;
     
+    public static ArrayList<Orden> listaOrdenTec;
+    
     public static final String correo = "reportes@gmail.com";
 
     /**
@@ -72,10 +74,12 @@ public class TecnicoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
     }    
 
     @FXML
     private void consultarOrden(ActionEvent event) {
+        
         contenidoOpcion.getChildren().clear();
         tabla = new TableView();
         TableColumn<Orden,String> colCod = new TableColumn<Orden,String>("Codigo");
@@ -87,7 +91,7 @@ public class TecnicoController implements Initializable {
         TableColumn<Orden,String> colTotal = new TableColumn<Orden,String>("Total a pagar");
         colTotal.setCellValueFactory(new PropertyValueFactory<>("TotalPagar"));
         //ObservableList<Orden> listOrd = FXCollections.observableArrayList(Orden.cargarOrdenes(App.pathOrdenes));
-        ObservableList<Orden> listOrd = FXCollections.observableArrayList(tec.getListaOrden());//
+        ObservableList<Orden> listOrd = FXCollections.observableArrayList(listaOrdenTec);//
         FilteredList<Orden> filteredData = new FilteredList<>(listOrd, p -> true);
         tabla.setItems(filteredData);
         tabla.getColumns().setAll(colCod,colDate,colCliente,colTotal);
@@ -138,7 +142,10 @@ public class TecnicoController implements Initializable {
         HBox hbox1 = new HBox(25);
        // Label detalle = new Label();
         contenidoOpcion.getChildren().addAll(searchBar,tabla,botDetalle,hbox1);
+        
+        //BOTON DETALLE
         botDetalle.setOnAction(e->{
+           
         hbox1.getChildren().clear();
         //detalle.setText("");
         Orden ordSel = (Orden) tabla.getSelectionModel().getSelectedItem();
@@ -149,7 +156,12 @@ public class TecnicoController implements Initializable {
         col1.setPercentWidth(40);
         ColumnConstraints col2 = new ColumnConstraints();
         col2.setPercentWidth(60);
-
+        
+        for(int i= 0; i< ordSel.getServicios().size();i++){
+         System.out.println(ordSel.getServicios().get(i));
+         System.out.println(ordSel.getCantidad().get(i));
+        }
+        
         for (int i = 0; i < 5; i++) {
             RowConstraints row = new RowConstraints(10);
             gridPane.getRowConstraints().add(row);
@@ -199,7 +211,7 @@ public class TecnicoController implements Initializable {
         contenidoOpcion.getChildren().clear();
         nombreOpcion.setText("Generar Orden");
         
-        Label codigo = new Label("Codigo: ");
+        Label codigo = new Label("Codigo del cliente: ");
         codigo.setPrefSize(120, 30);
         
         TextField llenarCode = new TextField();
@@ -260,32 +272,19 @@ public class TecnicoController implements Initializable {
         llenarCodServicio.setPrefSize(100, 30);
         llenarCodServicio.setPromptText("Digite el codigo del servicio");
         
-        Label nomServicio = new Label("Descripcion del servicio: ");
-        nomServicio.setPrefSize(120, 30);
-        
-        TextField llenarNomServicio = new TextField();
-        llenarNomServicio.setPrefSize(100, 30);
-        llenarNomServicio.setPromptText("Digite la descripcion del servicio");
-        
-        Label preServicio = new Label("Precio:  ");
-        preServicio.setPrefSize(120, 30);
-        
-        TextField llenarPrecioServicio = new TextField();
-        llenarPrecioServicio.setPrefSize(100, 30);
-        llenarPrecioServicio.setPromptText("Digite el precio del servicio");
+      
         
         Label cantServicio = new Label("Cantidad de servicio: ");
         cantServicio.setPrefSize(120, 30);
         
         TextField llenarCantServicio = new TextField();
         llenarCantServicio.setPrefSize(100, 30);
-        llenarCantServicio.setPromptText("Digite la fecha del servicio");
+        llenarCantServicio.setPromptText("Digite la cantidad del servicio");
         
-        contenidoOpcion.getChildren().addAll(codServicio, llenarCodServicio,nomServicio,llenarNomServicio,preServicio,llenarPrecioServicio,
+        contenidoOpcion.getChildren().addAll(codServicio, llenarCodServicio,
                 cantServicio,llenarCantServicio);
         contenidoOpcion.setMargin(codServicio, new Insets(0, 0, 5,0));
-        contenidoOpcion.setMargin(nomServicio, new Insets(5, 0, 5, 0));
-        contenidoOpcion.setMargin(preServicio, new Insets(5, 0, 5, 0));
+        
         contenidoOpcion.setMargin(cantServicio, new Insets(5, 0, 5, 0));
        
         Button b1 = new Button("Agregar Orden");
@@ -293,38 +292,37 @@ public class TecnicoController implements Initializable {
         contenidoOpcion.getChildren().addAll(b1,b2);
         
         
-        TipoVehiculo t = null;
-        if(automovil.isSelected()){
-            t = TipoVehiculo.AUTOMOVIL;
-        }
-        else if(motocicletas.isSelected()){
-            t = TipoVehiculo.MOTOCICLETAS;
-        }else if(bus.isSelected()){
-            t =  TipoVehiculo.BUS;
-        }
+      
       ArrayList<Servicio> arrser= new ArrayList<>();
+      
+      // BOTON AGREGAR SERVICIO
         b2.setOnAction(e->{
-       arrCant.add(Integer.valueOf(llenarCantServicio.getText()));
-            
+       
+
+
+try{
+        arrCant.add(Integer.valueOf(llenarCantServicio.getText()));
+        Servicio conSer = buscarService(llenarCodServicio.getText());
+        System.out.println("SERVICIO ENCONTRADO");
+        System.out.println(conSer);
+        arrser.add(conSer);
+        
+        
+          //mostrar informacion
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText("Resultado de la operacion");
+            alert.setContentText("Nuevo servicio agregado exitosamente");
+
+            alert.showAndWait();
 /*
-        try{
-            
-        ArrayList<Servicio> arrServ = new ArrayList<>();
-        Servicio s1 = new Servicio(llenarCodServicio.getText(),llenarNomServicio.getText(),Integer.valueOf(llenarPrecioServicio.getText()));
-        arrServ.add(s1);
         
 */
-Servicio servicio_en = null;
-
-        for(Servicio servicio_1:Admin.cargarServicio()){
-        if(servicio_1.getCodigo().equals(llenarCodServicio+"")){
-        servicio_en = servicio_1;
-        arrser.add(servicio_en);
-        }
-        }
+        llenarCodServicio.setText("");
         
-/*
-        catch(NumberFormatException num){
+        llenarCantServicio.clear();
+            System.err.println(arrser);
+        }catch(NumberFormatException num){
              Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error de registro");
                 alert.setHeaderText("Información faltante");
@@ -338,17 +336,23 @@ Servicio servicio_en = null;
                 alert.showAndWait();
                 ioex.getStackTrace();
         }
-*/
-        llenarCodServicio.setText("");
-        llenarNomServicio.clear();
-        llenarPrecioServicio.clear();
-        llenarCantServicio.clear();
-            System.err.println(arrser);
         
         });
         
         
-        String[] fechArray = llenarFecha.getText().split("-");
+        
+                
+       
+        //BOTON AGREGAR ORDEN
+        b1.setOnAction(e->{
+           
+            
+          ArrayList<Servicio> arrser1 = new ArrayList<>(arrser);
+          ArrayList<Integer> arrCant2 = new ArrayList<>(arrCant);
+        
+        //serializar la lista
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathUsuarios))){
+            String[] fechArray = llenarFecha.getText().split("-");
 
                 //Se hace un split y se crea un objeto de clase Calendar
                 int dia = Integer.valueOf(fechArray[0]);
@@ -356,37 +360,43 @@ Servicio servicio_en = null;
                 int anio = Integer.valueOf(fechArray[2]);
                 GregorianCalendar cal = new GregorianCalendar(anio, mes, dia);
         Cliente cl = Cliente.buscarCliente(llenarCode.getText());
-        Orden ord1= new Orden(cl,cal,llenarPlaca.getText(),t,arrser,arrCant);
-                
-        b1.setOnAction(e->{
-           
-            
-            
-        
-        //serializar la lista
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathUsuarios))){
+         TipoVehiculo t = null;
+        if(automovil.isSelected()){
+            t = TipoVehiculo.AUTOMOVIL;
+        }
+        else if(motocicletas.isSelected()){
+            t = TipoVehiculo.MOTOCICLETAS;
+        }else if(bus.isSelected()){
+            t =  TipoVehiculo.BUS;
+        }
+        //Orden ord1= new Orden(cl,cal,llenarPlaca.getText(),t,arrser1,arrCant2);
+        Orden ord1 = crearOrden(cl,cal,llenarPlaca.getText(),t,arrser1,arrCant2);
             
         for(Usuario a: users){
       if(a.equals(tec)){
           Tecnico atec = (Tecnico)a;
-          atec.getListaOrden().add(ord1);  
+          atec.getListaOrden().add(ord1); 
+          int idx= users.indexOf(a);
+          users.set(idx,atec);
+          listaOrdenTec.add(ord1);
         } 
     }
             out.writeObject(users);
             out.flush();
+            System.out.println(arrser1);
+            System.out.println(arrCant2);
 
             //mostrar informacion
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information Dialog");
-            alert.setHeaderText("Resultado de la operaci+on");
+            alert.setHeaderText("Resultado de la operacion");
             alert.setContentText("Nueva orden agregado exitosamente");
 
             alert.showAndWait();
             //carga la ventana principal
             
             llenarCodServicio.clear();
-            llenarNomServicio.clear();
-            llenarPrecioServicio.clear();
+           
             llenarCantServicio.clear();
             llenarCode.clear();
             llenarPlaca.clear();
@@ -395,20 +405,21 @@ Servicio servicio_en = null;
             motocicletas.setSelected(false);
             bus.setSelected(false);
             
-            
+            arrser.clear();
+            arrCant.clear();
 
         }catch(NumberFormatException num){
              Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error de registro");
                 alert.setHeaderText("Información faltante");
-                alert.setContentText("Datos con fotmato incorrecto");
+                alert.setContentText("Datos con formato incorrecto");
                 alert.showAndWait();
         } catch (IOException ex) {
             System.out.println("IOException:" + ex.getMessage());
             Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error de registro");
                 alert.setHeaderText("Información faltante");
-                alert.setContentText("Faltan datos");
+                alert.setContentText("Faltan datos / codigo no encontrado en el sistema");
                 alert.showAndWait();
         } 
         
@@ -467,7 +478,24 @@ Servicio servicio_en = null;
 
     }
     
+    public Orden crearOrden(Cliente cl, GregorianCalendar cal, String placa, TipoVehiculo t,
+            ArrayList<Servicio> arrser1, ArrayList<Integer> arrCant2) throws IOException{
+      if(arrser1.isEmpty() && arrCant2.isEmpty())  {
+          throw new IOException();
+      }
+      Orden ord1= new Orden(cl,cal,placa,t,arrser1,arrCant2);
+      return ord1;
     
+}
+    public static Servicio buscarService(String cod){
+        ArrayList<Servicio> servicios = Admin.cargarServicio();
+        for(Servicio s: servicios){
+            if(cod.equals(s.getCodigo())){
+                return s;
+            }
+        }
+        return null;
+    }
     
     
 }

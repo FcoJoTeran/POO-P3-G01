@@ -7,7 +7,12 @@ package modelo;
 //import com.mycompany.proyecto.NewMain;
 //import com.mycompany.proyecto.modelo.Persona;
 import com.mycompany.proyectog1.AdminController;
+import com.mycompany.proyectog1.App;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.Objects;
 
 
@@ -104,10 +109,26 @@ public class Cliente extends Persona{
         this.telefono = telefono;
     }
     
-    
+    public static ArrayList<Cliente> cargarClientes(String ruta) {
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        System.out.println("xxxxxxxxxxxxx Cargando Usuarios xxxxxxxxxxxxxxxx");
+       //leer la lista de personas del archivo serializado
+        try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream(ruta))) {
+            clientes = (ArrayList<Cliente>) oi.readObject();
+            System.out.println("=============");
+            // System.out.println(empleados);
+        } catch (FileNotFoundException ex) {
+            System.out.println("archivo no existe");
+        } catch (IOException   ex) {
+            System.out.println("error io:"+ex.getMessage());
+        } catch (ClassNotFoundException  ex) {
+            System.out.println("error class:"+ex.getMessage());
+        } 
+        return clientes;
+    }
  
     public static Cliente buscarCliente(String cod){
-        for(Cliente c: AdminController.l_mostrar_cliente){
+        for(Cliente c: cargarClientes(App.pathClientes)){
             
             if(Objects.equals(cod,c.getCodigo()))
                 return c;
